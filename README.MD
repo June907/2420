@@ -1,2 +1,2 @@
 # Group Name: 2420
-# Group Member: Issac Ingalls, Junwen Huang
+# Group Member: Isaac Ingalls, Junwen Huang, Floyd Haslett, Yusuf Kortobi
