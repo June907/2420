@@ -26,8 +26,7 @@ node_modules/
 npm-debug.log
 
 # Webpack
-/frontend/bundles/*
-/frontend/webpack_bundles/*
+
 /webpack-stats.json
 
 # Sass
@@ -57,5 +56,5 @@ tmp_email/
 !.elasticbeanstalk/*.global.yml
 
 # old apps
-frontend/
+
 spotify/
