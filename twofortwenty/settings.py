@@ -43,7 +43,9 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'django_extensions',
     'users',
-    'api'
+    'api',
+    'frontend',
+    'webpack_loader'
 ]
 
 REST_FRAMEWORK = {
@@ -101,6 +103,13 @@ DATABASES = {
     }
 }
 
+WEBPACK_LOADER = {
+  'DEFAULT': {
+    'BUNDLE_DIR_NAME': 'frontend/static/dist/',
+    'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json')
+  }
+}
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -142,3 +151,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static', '')
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'frontend/static'), 
+)

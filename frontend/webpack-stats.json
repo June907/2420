@@ -1,0 +1,16 @@
+{
+  "status": "done",
+  "assets": {
+    "main.js": {
+      "name": "main.js",
+      "path": "C:\\Users\\ipbjs\\Desktop\\pythonapps\\twofortwenty\\frontend\\static\\dist\\main.js",
+      "publicPath": "/static/dist/main.js"
+    }
+  },
+  "chunks": {
+    "main": [
+      "main.js"
+    ]
+  },
+  "publicPath": "/static/dist/"
+}
