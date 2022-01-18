@@ -9,7 +9,6 @@ __pycache__/
 /.vscode/
 /media
 /.ebextensions
-/static
 
 # coverage result
 .coverage
