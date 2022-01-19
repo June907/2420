@@ -21,9 +21,12 @@ __pycache__/
 *.dump
 
 # npm
+node_modules/
 npm-debug.log
 
 # Webpack
+
+/webpack-stats.json
 
 # Sass
 .sass-cache
