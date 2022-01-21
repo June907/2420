@@ -1,42 +1,54 @@
 import React from "react";
-import Stock from "./Stock";
-import Header from "./Header";
-import Footer from "./Footer";
-import Content from "./Content";
-import HomePageFeature from "./HomePageFeature";
-import HomePageIntro from "./HomePageIntro";
-import HomePageReviewIntro from "./HomePageReviewIntro";
-import ReviewContent from "./ReviewContent";
+import Header from "./header/Header";
+import Footer from "./footer/Footer";
+import Content from "./header/Content";
+import HomePageFeature from "./body/HomePageFeature";
+import HomePageIntro from "./body/HomePageIntro";
+import HomePageReviewIntro from "./footer/HomePageReviewIntro";
+import ReviewContent from "./footer/ReviewContent";
 
-export default function HomePage(){
+import SearchBarStock from "./header/SearchBarStock";
 
-  return(
-  <div>
-    <Header/>
-    <div class="container text-light">
-      <div class="d-flex">
+
+
+export default function HomePage (){
+  
+    return (
+
+      <div>
+      <Header/>
+        <div class="container text-light">
+        <div class="d-flex">
         <Content/>
-        <Stock/>
+        <SearchBarStock/>
+        </div>
+        
+  
+        
+  
+        <br></br>
+        <br></br>
+        <HomePageIntro/>
+        <br></br>
+        <br></br>
+        <HomePageFeature/>
+        <br></br>
+        <br></br>
+        <HomePageReviewIntro/>
+        <br></br>
+        <br></br>
+        <ReviewContent/>
+  
+  
+  
       </div>
-
-      <br></br>
-      <br></br>
-      <HomePageIntro/>
-      <br></br>
-      <br></br>
-      <HomePageFeature/>
-      <br></br>
-      <br></br>
-      <HomePageReviewIntro/>
-      <br></br>
-      <br></br>
-      <ReviewContent/>
-
-
-
+        <br></br>
+        <br></br>
+        <Footer/>
     </div>
-      <br></br>
-      <br></br>
-      <Footer/>
-  </div>)
-}
+
+    );
+  }
+
+  
+

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import Plot from "react-plotly.js";
 
-export default function Stock(){
+export default function Stock(props){
 
   const[state,setState]=useState(
     {stockChartXValue:[],
@@ -10,8 +10,8 @@ export default function Stock(){
 
     function fetchStock(){
       const API_KEY="ZLPQ29WJVETRN2AF";
-      let stockSymbol='AMZN';
-      let API_Call=`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${stockSymbol}&outputsize=compact&apikey=${API_KEY}`;
+      
+      let API_Call=`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${props.symbol}&outputsize=compact&apikey=${API_KEY}`;
       let stockChartXValuesFunction=[];
       let stockChartYValuesFunction=[];
       fetch(API_Call)
@@ -37,7 +37,7 @@ export default function Stock(){
 
     }
     useEffect(()=>{
-      fetchStock();},[] )
+      fetchStock();},[props.isClick] )
 
 
 
@@ -62,7 +62,7 @@ export default function Stock(){
                   height: 440,
                   paper_bgcolor:"#000",
                   plot_bgcolor:"#000",
-                  title: "Amazon",
+                  title: props.name,
                   font:{color:"#FFFFF7"},
                   hoverlabel:{bgcolor:"#FFFFF7"},
                   showlegend:false,
