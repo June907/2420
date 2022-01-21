@@ -48,6 +48,7 @@ spritesmith-generated/
 spritesmith.scss
 
 banned_words.txt
+db.sqlite3
 
 # templated email
 tmp_email/
