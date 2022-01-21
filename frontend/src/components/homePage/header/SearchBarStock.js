@@ -6,7 +6,7 @@ import Stock from "./Stock";
 
 export default class SearchBarStock extends Component {
   state = {
-    search: "",
+    search: "AAPL ,Apple Inc.",
     dataSource: [],
     click:false
   };

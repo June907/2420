@@ -11,6 +11,8 @@ export default function Stock(props){
     function fetchStock(){
       const API_KEY="ZLPQ29WJVETRN2AF";
       
+      
+      
       let API_Call=`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${props.symbol}&outputsize=compact&apikey=${API_KEY}`;
       let stockChartXValuesFunction=[];
       let stockChartYValuesFunction=[];
