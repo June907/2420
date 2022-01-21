@@ -47,6 +47,8 @@ twofortwenty/credentials.py
 spritesmith-generated/
 spritesmith.scss
 
+banned_words.txt
+
 # templated email
 tmp_email/
 # Elastic Beanstalk Files
