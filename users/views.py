@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework import generics, status
 from users.models import User
-from django.utils.encoding import force_bytes, force_text
+from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from django.contrib.auth import login, logout, authenticate
@@ -17,7 +17,7 @@ from rest_framework.authtoken.models import Token
 
 def activate(request, uidb64, token):
     try:
-        uid = force_text(urlsafe_base64_decode(uidb64))
+        uid = force_str(urlsafe_base64_decode(uidb64))
         user = User.objects.get(pk=uid)
     except(TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
@@ -66,7 +66,7 @@ class RegisterView(generics.GenericAPIView):
 
 
 class LoginView(APIView):
-    permission_classes = (AllowAny)
+    permission_classes = (AllowAny,)
 
     def post(self, request, format=None):
         email = request.data['email']
