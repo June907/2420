@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "./header/Header";
+
 import Footer from "./footer/Footer";
 import Content from "./header/Content";
 import HomePageFeature from "./body/HomePageFeature";
@@ -11,17 +11,24 @@ import SearchBarStock from "./header/SearchBarStock";
 
 
 
+
 export default function HomePage (){
   
     return (
 
       <div>
-      <Header/>
+
+        
+
+        
+      
         <div class="container text-light">
         <div class="d-flex">
+
         <Content/>
         <SearchBarStock/>
         </div>
+
         
   
         
