@@ -8,7 +8,7 @@ function Header(){
   <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
       <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-              <Link className="nav-link" to="/accout">Accout</Link>
+              <Link className="nav-link" to="/account">Account</Link>
           </li>
           <li class="nav-item">
               <a class="nav-link" href="#">Codeply</a>
