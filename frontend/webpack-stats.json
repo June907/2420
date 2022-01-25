@@ -12,7 +12,5 @@
       "main.js"
     ]
   },
-  "publicPath": "/static/dist/",
-  "error": "ModuleNotFoundError",
-  "message": "Module not found: Error: Can't resolve '../../styles.scss' in 'C:\\Users\\ipbjs\\Desktop\\pythonapps\\twofortwenty\\frontend\\src\\components'"
+  "publicPath": "/static/dist/"
 }

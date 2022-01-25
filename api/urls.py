@@ -18,5 +18,5 @@ from django.urls import path, include
 from .views import HelloWorldView
 
 urlpatterns = [
-    path('hello-world', HelloWorldView.as_view())
+    path('users/', include('users.urls'))
 ]

@@ -1,14 +1,40 @@
 import React from "react";
 
-
+import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
+import About from "./aboutPage/About";
 import HomePage from "./homePage/HomePage";
+import Header from "./homePage/header/Header";
+import Accounts from "./accountPage/Accounts";
+
+
 
 require(".././styles.scss");
 function App(){
   return(
-  <div >
+    <div>
   
-  <HomePage/>
+  
+    
+
+    <Router>
+      <Routes>
+        <Route path="/" element={<Header/>}>
+          <Route path="/" element={<HomePage/>}/>
+          <Route path="/about" element={<About/>}/>
+          <Route path="/account" element={<Accounts/>}/>
+
+
+          
+        </Route>
+
+      </Routes>
+
+    </Router>
+  
+  
+
+  
+  
   
     
 

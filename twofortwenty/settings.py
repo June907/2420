@@ -27,7 +27,7 @@ SECRET_KEY = SECRET_KEY_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '2for20.pythonanywhere.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '2for20.pythonanywhere.com']
 
 
 # Application definition
@@ -104,10 +104,10 @@ DATABASES = {
 }
 
 WEBPACK_LOADER = {
-  'DEFAULT': {
-    'BUNDLE_DIR_NAME': 'frontend/static/dist/',
-    'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json')
-  }
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': 'frontend/static/dist/',
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json')
+    }
 }
 
 
@@ -152,5 +152,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'frontend/static'), 
+    os.path.join(BASE_DIR, 'frontend/static'),
 )
