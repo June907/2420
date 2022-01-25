@@ -3,9 +3,7 @@ import React from "react";
 export default function HomePageReviewIntro(){
 
   return(<div>
-    <h1 class="center">Lorem ipsum</h1>
-    <p>Lorem ipsum dolor sit amet, 
-    consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
-    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <h1 class="center">Project Info</h1>
+    <p>This project was made in a group effort for our senior design class.  If you would like to learn more about the project, check out our about page.  If you would like to see the work that went into this project you could also find the source code at https://github.com/June907/2420</p>
   </div>)
 }

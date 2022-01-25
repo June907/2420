@@ -2,9 +2,7 @@ import React from "react";
 
 export default function HomePageIntro(){
   return(<div>
-    <h1 class="center">Lorem ipsum</h1>
-    <p>Lorem ipsum dolor sit amet, 
-    consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
-    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <h1 class="center">Two for Twenty</h1>
+    <p>This is a project made by investors, for investors.  A platform to discuss investment strategies is key to understanding the market, and unlike others, our site was made with stock investing in mind.  Unlike forum posts, we allow you to import live stock data through tickers, and let you use them however you like.  As an example you can search for a ticker you like, and select the range of dates you would like to see from it.  Double click to reset the ticker to its lifetime ticker.</p>
   </div>)
 }
