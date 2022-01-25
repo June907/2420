@@ -1,10 +1,10 @@
 import React from "react";
 
-export default function Accouts(){
+export default function Accounts(){
   return(
 
     <div>
-      <h1>This is an accout page</h1>
+      <h1>This is an account page</h1>
       
     </div>
   )
