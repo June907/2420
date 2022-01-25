@@ -5,7 +5,7 @@ export default function Accouts(){
 
     <div>
       <h1>This is an accout page</h1>
-
+      
     </div>
   )
 
