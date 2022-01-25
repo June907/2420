@@ -6,7 +6,7 @@ import Stock from "./Stock";
 
 export default class SearchBarStock extends Component {
   state = {
-    search: "AAPL ,Apple Inc.",
+    search: "AAPL: Apple Inc.",
     dataSource: [],
     click:false
   };
@@ -20,7 +20,7 @@ export default class SearchBarStock extends Component {
       const response = await axios.get(
         `https://ticker-2e1ica8b9.now.sh/keyword/${e}`
       );
-      const ArraysofData = response.data.map((f) => [f.symbol + " ," + f.name]);
+      const ArraysofData = response.data.map((f) => [f.symbol + ": " + f.name]);
       const FlatArray = [].concat(...ArraysofData);
 
       this.setState({ dataSource: FlatArray });
@@ -55,7 +55,7 @@ export default class SearchBarStock extends Component {
       </div>
           <Stock
             name={this.state.search}
-            symbol={this.state.search.substring(0,this.state.search.indexOf(" "))}
+            symbol={this.state.search.substring(0,this.state.search.indexOf(":"))}
             isClick={this.state.click}
           />
           </div>
