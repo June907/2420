@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'users',
     'api',
     'frontend',
-    'webpack_loader'
+    'webpack_loader',
+    'rest_framework_simplejwt.token_blacklist',
 ]
 
 REST_FRAMEWORK = {
