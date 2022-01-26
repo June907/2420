@@ -14,24 +14,6 @@ from .serializers import UserSerializer, RegisterSerializer, UpdateUserSerialize
 from rest_framework import generics, permissions, status
 from rest_framework.authtoken.models import Token
 
-
-def activate(request, uidb64, token):
-    try:
-        uid = force_str(urlsafe_base64_decode(uidb64))
-        user = User.objects.get(pk=uid)
-    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
-        user = None
-
-    data = {'success': False}
-
-    if user is not None and account_activation_token.check_token(user, token):
-        user.is_active = True
-        user.save()
-        data['success'] = True
-
-    return render(request, 'users/activate.html', data)
-
-
 class RegisterView(generics.GenericAPIView):
     serializer_class = RegisterSerializer
     permission_classes = [AllowAny]
@@ -65,29 +47,113 @@ class RegisterView(generics.GenericAPIView):
         return Response({'message': 'Account created. Please log in.'}, status=status.HTTP_201_CREATED)
 
 
-class LoginView(APIView):
-    permission_classes = (AllowAny,)
+# class LoginView(APIView):
+#     permission_classes = (AllowAny,)
+
+#     def post(self, request, format=None):
+#         email = request.data['email']
+#         user = None
+#         try:
+#             user_ = User.objects.filter(email=email)[0]
+#             user = authenticate(request=request, username=user_.username,
+#                                 password=request.data['password'])
+#         except IndexError:
+#             return Response({'message': 'No user associated with that email address.'}, status=status.HTTP_404_NOT_FOUND)
+
+#         if user is None:
+#             return Response({'message': 'Could not log in with provided credentials.'}, status=status.HTTP_400_BAD_REQUEST)
+
+#         # deletes token if exists and recreates a new one
+
+#         token, created = Token.objects.get_or_create(user=user)
+#         if not created:
+#             token.delete()
+#             token, created = Token.objects.get_or_create(user=user)
+
+#         login(request, user)
+
+#         return Response({'message': 'Logged in successfully.', 'token': token.key, 'user': UserSerializerWithEmail(user).data})
+
+
+# class LogoutView(generics.GenericAPIView):
+#     permission_classes = [permissions.AllowAny]
+
+#     def post(self, request, format=None):
+#         if request.user.current_wall != None:
+#             if request.user.current_wall.host == request.user:
+#                 request.user.current_wall.delete()
+#             request.user.current_wall = None
+#             request.user.save()
+#         key = request.META['HTTP_AUTHORIZATION'].split(" ")[-1]
+#         query = Token.objects.filter(key=key)
+#         if len(query) > 0:
+#             query.delete()
+#         logout(request)
+
+#         return Response({'message': 'Logged out successfully.'})
+
+class UpdateUser(generics.GenericAPIView):
+    serializer_class = UpdateUserSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def patch(self, request, format=None):
+
+        # serializer can't handle being sent current username, so filter it out of data if identical by creating a copy dict
+
+        # furthermore, avoid the taxing function of checking banned words list unless user is changing their name/username
+
+        if 'username' in request.data:
+            if request.data['username'] == request.user.username:
+                request.data._mutable = True
+                del request.data['username']
+                request.data._mutable = False
+
+        if request.data.get('first_name') == request.user.first_name:
+            request.data._mutable = True
+            del request.data['first_name']
+            request.data._mutable = False
+
+        if request.data.get('last_name') == request.user.last_name:
+            request.data._mutable = True
+            del request.data['last_name']
+            request.data._mutable = False
+
+        serializer = self.get_serializer(data=request.data)
+
+        serializer.is_valid(raise_exception=True)
+
+        # if 'profile_picture' in request.FILES:
+        #     # upload image to s3 and set image to user model
+        #     upload = Upload(
+        #         upload=request.FILES['profile_picture'], user=request.user.username)
+        #     upload.save()
+        #     request.user.profile_picture = upload.upload.url
+        if 'username' in serializer.validated_data:
+            request.user.username = serializer.validated_data['username']
+        if 'first_name' in serializer.validated_data:
+            request.user.first_name = serializer.validated_data['first_name']
+        if 'last_name' in serializer.validated_data:
+            request.user.last_name = serializer.validated_data['last_name']
+
+        request.user.save()
+        return Response({'message': 'Saved user settings.', 'user': UserSerializer(request.user).data}, status=status.HTTP_200_OK)
+
+
+class GetUserById(generics.GenericAPIView):
+    permission_classes = [permissions.AllowAny]
 
     def post(self, request, format=None):
-        email = request.data['email']
-        user = None
-        try:
-            user_ = User.objects.filter(email=email)[0]
-            user = authenticate(request=request, username=user_.username,
-                                password=request.data['password'])
-        except IndexError:
-            return Response({'message': 'No user associated with that email address.'}, status=status.HTTP_404_NOT_FOUND)
+        if 'id' in request.data:
+            try:
+                user = User.objects.filter(pk=request.data['id'])[0]
+                return Response({'message': 'User received.', 'user': UserSerializer(user).data}, status=status.HTTP_200_OK)
+            except IndexError:
+                return Response({'message': "This user doesn't exist."}, status=status.HTTP_404_NOT_FOUND)
+        return Response({"message": "Invalid data."}, status=status.HTTP_400_BAD_REQUEST)
 
-        if user is None:
-            return Response({'message': 'Could not log in with provided credentials.'}, status=status.HTTP_400_BAD_REQUEST)
 
-        # deletes token if exists and recreates a new one
+class GetUser(generics.GenericAPIView):
+    permission_classes = [permissions.IsAuthenticated]
 
-        token, created = Token.objects.get_or_create(user=user)
-        if not created:
-            token.delete()
-            token, created = Token.objects.get_or_create(user=user)
-
-        login(request, user)
-
-        return Response({'message': 'Logged in successfully.', 'token': token.key, 'user': UserSerializerWithEmail(user).data})
+    def get(self, request, format=None):
+        return Response({'message': 'User received.', 'user': UserSerializer(request.user).data}, status=status.HTTP_200_OK)

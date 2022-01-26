@@ -18,5 +18,6 @@ from django.urls import path, include
 from .views import HelloWorldView
 
 urlpatterns = [
-    path('users/', include('users.urls'))
+    path('users/', include('users.urls')),
+    path('hello-world/', HelloWorldView.as_view())
 ]

@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import os
 from pathlib import Path
 from .credentials import SECRET_KEY_
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -56,8 +57,9 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'twofortwenty.auth_token.BearerAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        # 'twofortwenty.auth_token.BearerAuthentication',
+        # 'rest_framework.authentication.BasicAuthentication',
     ],
     'EXCEPTION_HANDLER': 'twofortwenty.exception_handler.custom_exception_handler',
 }

@@ -71,13 +71,13 @@ class RegisterSerializer(serializers.ModelSerializer):
             'required': False}, "last_name": {'required': False}}
 
     def create(self, validated_data):
-        if 'profile_picture' in validated_data:
-            user = User.objects.create_user(
-                validated_data['username'], validated_data['email'], validated_data['password'], first_name=validated_data['first_name'], last_name=validated_data['last_name'], is_active=False, total_songs_added=0, profile_picture=validated_data['profile_picture'])
-            return user
+        # if 'profile_picture' in validated_data:
+        #     user = User.objects.create_user(
+        #         validated_data['username'], validated_data['email'], validated_data['password'], first_name=validated_data['first_name'], last_name=validated_data['last_name'], is_active=True, profile_picture=validated_data['profile_picture'])
+        #     return user
 
         user = User.objects.create_user(
-            validated_data['username'], validated_data['email'], validated_data['password'], first_name=validated_data['first_name'], last_name=validated_data['last_name'], is_active=False, total_songs_added=0)
+            validated_data['username'], validated_data['email'], validated_data['password'], first_name=validated_data['first_name'], last_name=validated_data['last_name'], is_active=True)
 
         return user
 
