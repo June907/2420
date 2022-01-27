@@ -38,7 +38,7 @@ export default class SearchBarStock extends Component {
 
       
       
-      <div class="container">
+      <div className="container">
         
           
           <div style={{ padding: "10%", marginLeft: "5%" }}>

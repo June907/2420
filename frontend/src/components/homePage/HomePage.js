@@ -22,8 +22,8 @@ export default function HomePage (){
 
         
       
-        <div class="container text-light">
-        <div class="d-flex">
+        <div className="container text-light">
+        <div className="d-flex">
 
         <Content/>
         <SearchBarStock/>
