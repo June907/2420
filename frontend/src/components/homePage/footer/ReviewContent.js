@@ -4,7 +4,7 @@ export default function ReviewContent(){
   return(<div className="container overflow-hidden">
   <div className="row gx-5">
     <div className="col-4">
-      <div className="p-3 card text-white bg-dark mb-3" >
+      <div className="p-3 card text-white bg-dark mb-3" style={{ height: "100%" }}>
       <div className="card-header">Header</div>
           <div className="card-body">
           
@@ -15,7 +15,7 @@ export default function ReviewContent(){
       </div>
     </div>
     <div className="col-4">
-      <div className="p-3 card text-white bg-dark mb-3" >
+      <div className="p-3 card text-white bg-dark mb-3" style={{ height: "100%" }}>
       <div className="card-header">Header</div>
           <div className="card-body">
             <h5 className="card-title">Select dates</h5>
@@ -25,7 +25,7 @@ export default function ReviewContent(){
       </div>
     </div>
     <div className="col-4">
-      <div className="p-3 card text-white bg-dark mb-3" >
+      <div className="p-3 card text-white bg-dark mb-3" style={{ height: "100%" }}>
         <div className="card-header">Header</div>
           <div className="card-body">
             <h5 className="card-title">Follow Other Analysts</h5>
