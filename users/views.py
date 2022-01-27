@@ -13,6 +13,8 @@ from django.core.mail import EmailMessage
 from .serializers import UserSerializer, RegisterSerializer, UpdateUserSerializer, UserSerializerWithEmail
 from rest_framework import generics, permissions, status
 from rest_framework.authtoken.models import Token
+from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.token_blacklist.models import OutstandingToken
 
 class RegisterView(generics.GenericAPIView):
     serializer_class = RegisterSerializer
@@ -46,51 +48,21 @@ class RegisterView(generics.GenericAPIView):
 
         return Response({'message': 'Account created. Please log in.'}, status=status.HTTP_201_CREATED)
 
+class LogoutView(generics.GenericAPIView):
+    permission_classes = [permissions.IsAuthenticated]
 
-# class LoginView(APIView):
-#     permission_classes = (AllowAny,)
+    def post(self, request, format=None):
+        try:
+            refresh = request.data['refresh']
+            outstanding_token = OutstandingToken.objects.filter(user=request.user, token=refresh)
+            if len(outstanding_token) > 0:
+                token = RefreshToken(refresh)
+                token.blacklist()
+                return Response({'message': 'Logged out successfully.'}, status=status.HTTP_200_OK)
+            return Response({'message': 'You can only invalidate your own tokens.'}, status=status.HTTP_400_BAD_REQUEST)
+        except Exception:
+            return Response({'message': 'Token invalid or none included.'}, status=status.HTTP_400_BAD_REQUEST)
 
-#     def post(self, request, format=None):
-#         email = request.data['email']
-#         user = None
-#         try:
-#             user_ = User.objects.filter(email=email)[0]
-#             user = authenticate(request=request, username=user_.username,
-#                                 password=request.data['password'])
-#         except IndexError:
-#             return Response({'message': 'No user associated with that email address.'}, status=status.HTTP_404_NOT_FOUND)
-
-#         if user is None:
-#             return Response({'message': 'Could not log in with provided credentials.'}, status=status.HTTP_400_BAD_REQUEST)
-
-#         # deletes token if exists and recreates a new one
-
-#         token, created = Token.objects.get_or_create(user=user)
-#         if not created:
-#             token.delete()
-#             token, created = Token.objects.get_or_create(user=user)
-
-#         login(request, user)
-
-#         return Response({'message': 'Logged in successfully.', 'token': token.key, 'user': UserSerializerWithEmail(user).data})
-
-
-# class LogoutView(generics.GenericAPIView):
-#     permission_classes = [permissions.AllowAny]
-
-#     def post(self, request, format=None):
-#         if request.user.current_wall != None:
-#             if request.user.current_wall.host == request.user:
-#                 request.user.current_wall.delete()
-#             request.user.current_wall = None
-#             request.user.save()
-#         key = request.META['HTTP_AUTHORIZATION'].split(" ")[-1]
-#         query = Token.objects.filter(key=key)
-#         if len(query) > 0:
-#             query.delete()
-#         logout(request)
-
-#         return Response({'message': 'Logged out successfully.'})
 
 class UpdateUser(generics.GenericAPIView):
     serializer_class = UpdateUserSerializer
