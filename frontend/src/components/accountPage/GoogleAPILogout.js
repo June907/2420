@@ -10,7 +10,7 @@ export default function GoogleAPILogout() {
   };
 
   return(
-    <div>
+    <div className="center">
       <GoogleLogout
         clientId={clientId}
         buttonText="Logout"

@@ -30,7 +30,9 @@ export default function Signup(){
 
   
   return(
-    <div className="container">
+    <div>
+      
+
       <form>
         <input
           onChange={handleChange}

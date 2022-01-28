@@ -22,7 +22,7 @@ export default function GoogleAPILogin(){
   };
 
   return(
-    <div>
+    <div className="center">
       <GoogleLogin
         clientId={clientId}
         buttonText="Login"

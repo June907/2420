@@ -6,11 +6,13 @@ import Signup from "./Signup";
 export default function Accounts(){
   return(
 
-    <div>
-      <h1>This is an account page</h1>
+    <div className="container">
+      <h1 className="center">Sign Up</h1>
+      <br/>
+      
+      <Signup/>
       <GoogleAPILogin/>
       <GoogleAPILogout/>
-      <Signup/>
       
     </div>
   )
