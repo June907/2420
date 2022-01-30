@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { Link } from "react-router-dom";
 
 export default function Signup(){
   
@@ -31,10 +31,14 @@ export default function Signup(){
   
   return(
     <div>
+      <h1 className="center">Sign Up as {userInfo.fName} {userInfo.lName}</h1>
+      <p className="text-light pCenter">{userInfo.email}</p>
+      
       
 
       <form>
         <input
+          className="signup-input"
           onChange={handleChange}
           type="text"
           name="fName"
@@ -45,6 +49,7 @@ export default function Signup(){
 
         />
         <input
+          className="signup-input"
           onChange={handleChange}
           type="text"
           name="lName"
@@ -54,6 +59,7 @@ export default function Signup(){
 
         />
         <input
+          className="signup-input"
           onChange={handleChange}
           type="text"
           name="email"
@@ -62,6 +68,7 @@ export default function Signup(){
 
         />
         <input
+          className="signup-input"
           onChange={handleChange}
           type="password"
           name="password"
@@ -71,6 +78,7 @@ export default function Signup(){
 
           
         />
+        <p className="text-light pCenter">Already have an account? Click here to <Link to="/login">Log in </Link></p>
 
       </form>
 

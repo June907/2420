@@ -6,6 +6,7 @@ import HomePage from "./homePage/HomePage";
 import Header from "./homePage/header/Header";
 import Accounts from "./accountPage/Accounts";
 
+import LoginPage from "./accountPage/LoginPage/LoginPage";
 
 
 require(".././styles.scss");
@@ -22,6 +23,10 @@ function App(){
           <Route path="/" element={<HomePage/>}/>
           <Route path="/about" element={<About/>}/>
           <Route path="/account" element={<Accounts/>}/>
+            
+          
+          <Route path="/login" element={<LoginPage/>}/>
+          
 
 
           
