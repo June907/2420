@@ -45,7 +45,7 @@ export default function About(){
     C# and worked with the team to learn aditional languages of HTTP, CSS, JavaScript, and React. In his free time he enjoys rock climbing, swimming, and is a network admin intern at
     a local Greeley Business <br/>
     <a href = "https://www.linkedin.com/in/floyd-haslett/" target="_blank"> LinkedIn</a>
-    <br/><br/><br/><br/><br/><br/><br/><br/>
+    <Footer/>
   </p>
   </div>)
 }
