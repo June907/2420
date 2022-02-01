@@ -15,6 +15,8 @@ from rest_framework import generics, permissions, status
 from rest_framework.authtoken.models import Token
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.token_blacklist.models import OutstandingToken
+from django.middleware import csrf
+from django.conf import settings
 
 class RegisterView(generics.GenericAPIView):
     serializer_class = RegisterSerializer
@@ -48,17 +50,82 @@ class RegisterView(generics.GenericAPIView):
 
         return Response({'message': 'Account created. Please log in.'}, status=status.HTTP_201_CREATED)
 
-class LogoutView(generics.GenericAPIView):
-    permission_classes = [permissions.IsAuthenticated]
+def get_tokens_for_user(user):
+    refresh = RefreshToken.for_user(user)
+    return {
+        'refresh': str(refresh),
+        'access': str(refresh.access_token)
+    }
+
+class LoginView(APIView):
+    permission_classes = [permissions.AllowAny]
 
     def post(self, request, format=None):
+        user = authenticate(email=request.data.get('email'), password=request.data.get('password'))
+        response = Response()
+
+        if user is not None:
+            data = get_tokens_for_user(user)
+            response.set_cookie(
+                key = settings.SIMPLE_JWT['AUTH_COOKIE'],
+                value = data["access"],
+                expires = settings.SIMPLE_JWT['ACCESS_TOKEN_LIFETIME'],
+                secure = settings.SIMPLE_JWT['AUTH_COOKIE_SECURE'],
+                httponly = settings.SIMPLE_JWT['AUTH_COOKIE_HTTP_ONLY'],
+                samesite = settings.SIMPLE_JWT['AUTH_COOKIE_SAMESITE']
+            )
+            response.set_cookie(
+                key = 'refresh_token',
+                value = data["refresh"],
+                expires = settings.SIMPLE_JWT['REFRESH_TOKEN_LIFETIME'],
+                secure = settings.SIMPLE_JWT['AUTH_COOKIE_SECURE'],
+                httponly = settings.SIMPLE_JWT['AUTH_COOKIE_HTTP_ONLY'],
+                samesite = settings.SIMPLE_JWT['AUTH_COOKIE_SAMESITE']
+            )
+            response.data = {'message': 'Login successful.', 'data': data}
+            response.status = status.HTTP_200_OK
+            
+            return response
+        
+class RefreshView(APIView):
+    permission_classes = [permissions.AllowAny]
+
+    def get(self, request, format=None):
         try:
-            refresh = request.data['refresh']
+            refresh = RefreshToken(request.COOKIES.get('refresh_token'))
+            access = str(refresh.access_token)
+            response = Response()
+            response.set_cookie(
+                key = settings.SIMPLE_JWT['AUTH_COOKIE'],
+                value = access,
+                expires = settings.SIMPLE_JWT['ACCESS_TOKEN_LIFETIME'],
+                secure = settings.SIMPLE_JWT['AUTH_COOKIE_SECURE'],
+                httponly = settings.SIMPLE_JWT['AUTH_COOKIE_HTTP_ONLY'],
+                samesite = settings.SIMPLE_JWT['AUTH_COOKIE_SAMESITE']
+            )
+
+            response.data = {'access': access}
+            response.status = status.HTTP_200_OK
+            return response
+
+        except Exception:
+            return Response({'message': 'Refresh token invalid.'}, status=status.HTTP_401_UNAUTHORIZED)
+            
+
+class LogoutView(generics.GenericAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def get(self, request, format=None):
+        try:
+            refresh = request.COOKIES.get('refresh_token')
             outstanding_token = OutstandingToken.objects.filter(user=request.user, token=refresh)
             if len(outstanding_token) > 0:
                 token = RefreshToken(refresh)
                 token.blacklist()
-                return Response({'message': 'Logged out successfully.'}, status=status.HTTP_200_OK)
+                response = Response({'message': 'Logged out successfully.'}, status=status.HTTP_200_OK)
+                response.delete_cookie(settings.SIMPLE_JWT['AUTH_COOKIE'])
+                response.delete_cookie('refresh_token')
+                return response
             return Response({'message': 'You can only invalidate your own tokens.'}, status=status.HTTP_400_BAD_REQUEST)
         except Exception:
             return Response({'message': 'Token invalid or none included.'}, status=status.HTTP_400_BAD_REQUEST)

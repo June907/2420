@@ -1,4 +1,5 @@
 from rest_framework.views import exception_handler
+from django.conf import settings
 
 
 def custom_exception_handler(exc, context):
@@ -26,5 +27,8 @@ def custom_exception_handler(exc, context):
         if 'non_field_errors' in response.data:
             response.data['message'] = response.data['non_field_errors'][0]
             del response.data['non_field_errors']
+
+        if response.status_code == 401:
+            response.delete_cookie(settings.SIMPLE_JWT['AUTH_COOKIE'])
 
     return response

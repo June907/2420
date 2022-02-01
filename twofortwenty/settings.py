@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'frontend',
     'webpack_loader',
     'rest_framework_simplejwt.token_blacklist',
+    'corsheaders',
 ]
 
 REST_FRAMEWORK = {
@@ -58,8 +59,9 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-        # 'twofortwenty.auth_token.BearerAuthentication',
+        # 'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'twofortwenty.auth_token.CookieAuthentication',
+        'twofortwenty.auth_token.BearerAuthentication',
         # 'rest_framework.authentication.BasicAuthentication',
     ],
     'EXCEPTION_HANDLER': 'twofortwenty.exception_handler.custom_exception_handler',
@@ -68,6 +70,7 @@ REST_FRAMEWORK = {
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -134,6 +137,22 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'AUTH_COOKIE': 'access_token',
+    'AUTH_COOKIE_DOMAIN': None,
+    'AUTH_COOKIE_SECURE': False,
+    'AUTH_COOKIE_HTTP_ONLY': True,
+    'AUTH_COOKIE_PATH': '/',
+    'AUTH_COOKIE_SAMESITE': 'Lax',
+}
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8000",
+    "https://2for20.pythonanywhere.com",
+    "https://2for20.pythonanywhere.com",
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
