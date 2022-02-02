@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
+
 async function loginUser(credentials){
   return fetch("https://2for20.pythonanywhere.com/api/users/token",{
     method:"POST",
@@ -15,21 +15,21 @@ async function loginUser(credentials){
 }
 
 
-export default function Login({setToken}){
+export default function Login(){
   
   
-  const[password,setPassword]=useState();
-  const[email,setEmail]=useState();
+  const[password,setPassword]=useState("");
+  const[email,setEmail]=useState("");
 
   const handleSubmit = async e => {
     e.preventDefault();
-    const token = await loginUser({
+    await loginUser({
 
       
       "email":email,
       "password":password
     });
-    setToken(token);
+    
   }
 
 
@@ -73,6 +73,3 @@ export default function Login({setToken}){
 
 }
 
-Login.propTypes = {
-  setToken: PropTypes.func.isRequired
-};

@@ -7,11 +7,11 @@ export default function LoginPage(){
     <div className="container">
       
       <Login></Login>
-      <GoogleAPILogin></GoogleAPILogin>
+      
 
 
     </div>
 
   )
-    
+
 }
