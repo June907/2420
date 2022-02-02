@@ -96,6 +96,7 @@ class LoginView(APIView):
             response.status = status.HTTP_200_OK
 
             return response
+        return Response({'message': 'Invalid credentials.'}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class RefreshView(APIView):
