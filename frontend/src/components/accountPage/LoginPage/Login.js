@@ -1,63 +1,68 @@
 import React, { useState } from "react";
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+import PropTypes from "prop-types";
+async function loginUser(credentials){
+  return fetch("https://2for20.pythonanywhere.com/api/users/token",{
+    method:"POST",
+    headers:{
+      'Content-Type': 'application/json'
 
-export default function Login(){
+    },
+    body:JSON.stringify(credentials)
+  })
+    .then(data=>data.json())
+
+}
+
+
+export default function Login({setToken}){
   
-  const[userInfo,setUserInfo]=useState({
- 
-    email:"",
-    password:""
+  
+  const[password,setPassword]=useState();
+  const[email,setEmail]=useState();
 
+  const handleSubmit = async e => {
+    e.preventDefault();
+    const token = await loginUser({
 
-  });
-
-  function handleChange(event){
-    const{name,value}=event.target;
-
-    setUserInfo((prevValue)=>{
-      return{
-        ...prevValue,
-        [name]:value
-      };
-
-      }
-    )
-
-    
-
+      
+      "email":email,
+      "password":password
+    });
+    setToken(token);
   }
+
 
   
   return(
     <div>
-      
       <h1 className="center">Login</h1>
-      <form>
         
+      
+
+      <form onSubmit={handleSubmit}>
+
+
         <input
           className="signup-input"
-          onChange={handleChange}
+          onChange={e=>setEmail(e.target.value)}
           type="text"
           name="email"
-          value={userInfo.email}
-          placeholder="Email Adress"
+          value={email}
+          placeholder="Email"
 
         />
         <input
           className="signup-input"
-          onChange={handleChange}
+          onChange={e=>setPassword(e.target.value)}
           type="password"
           name="password"
-          value={userInfo.password}
+          value={password}
           placeholder="Password"
 
 
           
         />
         <button>Submit</button>
-       
-
       </form>
 
 
@@ -66,3 +71,7 @@ export default function Login(){
   )
 
 }
+
+Login.propTypes = {
+  setToken: PropTypes.func.isRequired
+};

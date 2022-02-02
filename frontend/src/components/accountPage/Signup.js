@@ -1,78 +1,59 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
+
+async function loginUser(credentials){
+  return fetch("https://2for20.pythonanywhere.com/api/users/register",{
+    method:"POST"
+  })
+}
+
 export default function Signup(){
-  
-  const[userInfo,setUserInfo]=useState({
-    fName:"",
-    lName:"",
-    email:"",
-    password:""
+  const[userName,setUserName]=useState();
+  const[password,setPassword]=useState();
+  //const[fName,setfName]=useState();
+  //const[lName,setlName]=useState();
+  const[email,setEmail]=useState();
 
 
-  });
 
-  function handleChange(event){
-    const{name,value}=event.target;
-
-    setUserInfo((prevValue)=>{
-      return{
-        ...prevValue,
-        [name]:value
-      };
-
-      }
-    )
-
-    
-
-  }
 
   
   return(
     <div>
-      <h1 className="center">Sign Up as {userInfo.fName} {userInfo.lName}</h1>
-      <p className="text-light pCenter">{userInfo.email}</p>
-      
+      <h1 className="center">Sign Up </h1>
+        
       
 
       <form>
-        <input
+      <input
           className="signup-input"
-          onChange={handleChange}
+          onChange={e=>setUserName(e.target.value)}
           type="text"
-          name="fName"
-          value={userInfo.fName}
-          placeholder="First Name"
+          name="userName"
+          value={userName}
+          placeholder="User Name"
           maxLength="50"
 
 
         />
-        <input
-          className="signup-input"
-          onChange={handleChange}
-          type="text"
-          name="lName"
-          value={userInfo.lName}
-          placeholder="Last Name"
-          maxLength="50"
 
-        />
+
         <input
           className="signup-input"
-          onChange={handleChange}
+          onChange={e=>setEmail(e.target.value)}
           type="text"
           name="email"
-          value={userInfo.email}
+          value={email}
           placeholder="Email"
 
         />
         <input
           className="signup-input"
-          onChange={handleChange}
+          onChange={e=>setPassword(e.target.value)}
           type="password"
           name="password"
-          value={userInfo.password}
+          value={password}
           placeholder="Password"
 
 
