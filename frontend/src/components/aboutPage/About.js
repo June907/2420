@@ -12,6 +12,7 @@ export default function About(){
     [Insert Webisite Name Here] is the culmination of one whole school year dedicated to learning how to develop a project from start to finish. The goal of this webisite was to fill the social media void for stock trading. 
     Through the expressed need for a dedicated sight seen through the many reddit threds and facebook groups, [Insert Webisite Name Here] was born. 
   </p>
+  <br/>
   <p className = "text-light">
     <b><u>Isaac Ingalls</u>: Project Lead</b><br/>
     Isaac is a third year Business Computer Information Systems Major interested in data analytics and large scale backend calculations. He took the lead roll in this project 
@@ -34,10 +35,14 @@ export default function About(){
     <a href = "https://www.linkedin.com/in/erik-halenkamp-4b49451a6/" target="_blank">LinkedIn</a>  
   </p>
   <p className = "text-light" align = "right">
+    <div class="image">
+      <img src="../../static/admin/img/YK.jfif"></img>
+    </div>
   <b><u>Yusuf Kortobi</u>: Frontend Developer</b><br/>
-    Isaac is a third year Business Computer Information Systems Major interested in data analytics and large scale backend calculations. He took the lead roll in this project 
-    using management skills and large scale ideas to guide the more technical members of the team to create the website we planned and invisioned. Outside of school he participates 
-    in weightlighting and a competitive bowling league. <br/><a href = "https://www.linkedin.com/in/yusuf-kortobi-aa496b19b/" target="_blank"> LinkedIn</a>  
+    Yusuf is a 4th year student studying Software Engineering at UNC, graduating in May 2022. He took a frontend role, taking on many of the web design tasks 
+    while using many of the skills he learned while studying computer science. Professionally, Yusuf has worked with National STEM Honor Society as an web design intern, and as 
+    an RA in housing at UNC.  Outside of school he participates in competitve swim, as well as weightlifting and climbing for fun. <br/>
+    <a href = "https://www.linkedin.com/in/yusuf-kortobi-aa496b19b/" target="_blank"> LinkedIn</a>  
   </p>
   <p className = "text-light" >
   <b><u>Floyd Haslett</u>: System Security</b> <br/>
@@ -45,7 +50,7 @@ export default function About(){
     C# and worked with the team to learn aditional languages of HTTP, CSS, JavaScript, and React. In his free time he enjoys rock climbing, swimming, and is a network admin intern at
     a local Greeley Business <br/>
     <a href = "https://www.linkedin.com/in/floyd-haslett/" target="_blank"> LinkedIn</a>
-    <br/><br/><br/><br/><br/><br/><br/><br/>
+    <Footer/>
   </p>
   </div>)
 }

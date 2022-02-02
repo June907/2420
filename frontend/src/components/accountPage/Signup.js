@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Footer from "../homePage/footer/Footer";
 
 
 async function loginUser(credentials){
@@ -63,10 +64,12 @@ export default function Signup(){
         <p className="text-light pCenter">Already have an account? Click here to <Link to="/login">Log in </Link></p>
 
       </form>
+      <Footer positon = 'fixed'/>
 
 
 
     </div>
+    
 
   )
 
