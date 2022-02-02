@@ -92,8 +92,7 @@ class LoginView(APIView):
             if request.headers.get('Origin') in settings.CORS_ALLOWED_ORIGINS:
                 origin = request.headers.get('Origin')
 
-            response.headers = {
-                'Access-Control-Allow-Origin': origin}
+            response.headers['Access-Control-Allow-Origin'] = origin
             response.status = status.HTTP_200_OK
 
             return response
