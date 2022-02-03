@@ -12,7 +12,10 @@ body{
   
 }
 
+
+
 #page-container{
+  display: flex;
   position: relative;
   min-height: 100%;
 }
