@@ -3,7 +3,12 @@ const BundleTracker = require('webpack-bundle-tracker')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
-  entry: './src/index.js',
+  entry: {
+    main: './src/index.js',
+    // about: './src/AboutEntry.js',
+    // accounts: './src/AccountsEntry.js',
+    // login: './src/LoginEntry.js',
+  },
   output: {
     path: path.resolve(__dirname, './static/dist/'),
     filename: '[name].js',
