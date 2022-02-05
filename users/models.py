@@ -11,7 +11,7 @@ class User(AbstractUser):
     company = models.CharField(max_length=50, null=False, blank=False)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username']
+    REQUIRED_FIELDS = []
 
 
 class ExpiredToken(models.Model):

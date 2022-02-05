@@ -1,0 +1,26 @@
+
+.block{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    align-self: center;
+}
+.blocks-text{
+    flex: 1 1 0;
+    text-align: left;
+    min-width: 75%;
+    max-width: 75%;
+    height: fit-content;
+    margin: 1em;
+}
+.blocks-picture{
+    width: 10%;
+    height: 125px;
+    margin: .5em;
+    background-color: blue;
+    align-self: center;
+}
+.container{
+    display: flex;
+    flex-wrap: wrap;
+}
