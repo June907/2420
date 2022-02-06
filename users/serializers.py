@@ -9,7 +9,7 @@ import os
 from rest_framework.response import Response
 
 
-user_serializer_fields = ['id',
+user_serializer_fields = ['id', 'username',
                           'first_name', 'last_name', 'created_at', 'profile_picture', 'is_subscribed']
 
 
@@ -65,7 +65,7 @@ class UserSerializerWithEmail(UserSerializer):
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id',  'email',
+        fields = ('id', 'username', 'email',
                   'password', 'first_name', 'last_name')
         extra_kwargs = {'password': {'write_only': True}, "first_name": {
             'required': False}, "last_name": {'required': False}}
@@ -77,7 +77,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         #     return user
 
         user = User.objects.create_user(
-            validated_data['email'], validated_data['password'], first_name=validated_data['first_name'], last_name=validated_data['last_name'], is_active=True)
+            validated_data['username'], validated_data['email'], validated_data['password'], first_name=validated_data['first_name'], last_name=validated_data['last_name'], is_active=True)
 
         return user
 
@@ -89,7 +89,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
         try:
             error = checkForInappropriateNames(
-                data.get('first_name'), data.get('last_name'))
+                data.get('username'), data.get('first_name'), data.get('last_name'))
             raise error
         except TypeError:
             return data
@@ -98,15 +98,15 @@ class RegisterSerializer(serializers.ModelSerializer):
 class UpdateUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('password', 'first_name', 'last_name')
-        extra_kwargs = {'password': {'write_only': True, 'required': False}, "first_name": {
+        fields = ('password', 'username', 'first_name', 'last_name')
+        extra_kwargs = {'password': {'write_only': True, 'required': False}, "username": {"required": False, "allow_null": False}, "first_name": {
             "required": False, "allow_null": False}, "last_name": {"required": False, "allow_null": False}}
 
     def validate(self, data):
         error = None
         try:
             error = checkForInappropriateNames(
-                data.get('first_name'), data.get('last_name'))
+                data.get('username'), data.get('first_name'), data.get('last_name'))
             raise error
         # if we're raising None
         except TypeError:
