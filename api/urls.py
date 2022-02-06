@@ -19,6 +19,5 @@ from .views import HelloWorldView
 
 urlpatterns = [
     path('users/', include('users.urls')),
-    path('posts/', include('posts.urls')),
     path('hello-world/', HelloWorldView.as_view())
 ]

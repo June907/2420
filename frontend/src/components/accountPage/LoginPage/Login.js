@@ -1,51 +1,51 @@
 import React, { useState } from "react";
 
-async function loginUser(credentials) {
-  return fetch("https://2for20.pythonanywhere.com/api/users/token", {
-    method: "POST",
-    headers: {
-      'Origin': 'http://localhost:8000',
+async function loginUser(credentials){
+  return fetch("https://2for20.pythonanywhere.com/api/users/token",{
+    method:"POST",
+    headers:{
+      'Origin':'http://localhost:3000',
       'Content-Type': 'application/json'
 
     },
-    body: JSON.stringify(credentials)
+    body:JSON.stringify(credentials)
   })
-    .then(data => data.json())
+    .then(data=>data.json())
 
 }
 
 
-export default function Login() {
-
-
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
+export default function Login(){
+  
+  
+  const[password,setPassword]=useState("");
+  const[email,setEmail]=useState("");
 
   const handleSubmit = async e => {
     e.preventDefault();
     await loginUser({
 
-
-      "email": email,
-      "password": password
+      
+      "email":email,
+      "password":password
     });
-
+    
   }
 
 
-
-  return (
+  
+  return(
     <div>
       <h1 className="center">Login</h1>
-
-
+        
+      
 
       <form onSubmit={handleSubmit}>
 
 
         <input
           className="signup-input"
-          onChange={e => setEmail(e.target.value)}
+          onChange={e=>setEmail(e.target.value)}
           type="text"
           name="email"
           value={email}
@@ -54,14 +54,14 @@ export default function Login() {
         />
         <input
           className="signup-input"
-          onChange={e => setPassword(e.target.value)}
+          onChange={e=>setPassword(e.target.value)}
           type="password"
           name="password"
           value={password}
           placeholder="Password"
 
 
-
+          
         />
         <button>Submit</button>
       </form>
