@@ -1,2 +1,24 @@
 #Your Client ID: 517450042509-bhmmi5plriq596mmn8jgdb94647si4k2.apps.googleusercontent.com
 #Your Client Secret: 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
+
+ipbjsammich@gmail.com
+testing2420
+
+    try{
+        const response= await axios.post(login_url,JSON.stringify({email,password}),
+          {
+            headers: {'Access-Control-Allow-Origin':'http://localhost:3000/','Content-Type':'application/json', },
+            withCredentials:true
+            
+
+          }
+        );
+        setEmail("");
+        setPassword("");
+
+
+    }catch(err){
+      console.log(err);
+
+
+    }

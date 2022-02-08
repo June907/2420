@@ -81,6 +81,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'twofortwenty.urls'
 
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

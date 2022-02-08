@@ -1,6 +1,5 @@
 import React from "react";
 
-import Footer from "./footer/Footer";
 import Content from "./header/Content";
 import HomePageFeature from "./body/HomePageFeature";
 import HomePageIntro from "./body/HomePageIntro";
@@ -13,15 +12,13 @@ import SearchBarStock from "./header/SearchBarStock";
 
 
 export default function HomePage (){
-  
+
     return (
 
       <div>
 
-        
 
-        
-      
+
         <div className="container text-light">
         <div className="d-flex">
 
@@ -29,10 +26,8 @@ export default function HomePage (){
         <SearchBarStock/>
         </div>
 
-        
-  
-        
-  
+
+
         <br></br>
         <br></br>
         <HomePageIntro/>
@@ -45,17 +40,12 @@ export default function HomePage (){
         <br></br>
         <br></br>
         <ReviewContent/>
-  
-  
-  
+
       </div>
-        <br></br>
-        <br></br>
-        <Footer/>
+
     </div>
 
     );
   }
 
-  
 
