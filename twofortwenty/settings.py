@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'webpack_loader',
     'rest_framework_simplejwt.token_blacklist',
     'corsheaders',
+    'posts',
 ]
 
 REST_FRAMEWORK = {
@@ -79,6 +80,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'twofortwenty.urls'
+
 
 TEMPLATES = [
     {

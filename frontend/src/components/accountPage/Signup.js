@@ -19,12 +19,11 @@ export default function Signup(){
 
 
 
-  
+
   return(
     <div>
       <h1 className="center">Sign Up </h1>
-        
-      
+
 
       <form>
       <input
@@ -58,18 +57,17 @@ export default function Signup(){
           placeholder="Password"
 
 
-          
+
         />
         <button>Submit</button>
         <p className="text-light pCenter">Already have an account? Click here to <Link to="/login">Log in </Link></p>
 
       </form>
-      <Footer positon = 'fixed'/>
+
 
 
 
     </div>
-    
 
   )
 

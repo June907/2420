@@ -1,18 +1,6 @@
 import React, { useState } from "react";
+import axios from "./axios";
 
-async function loginUser(credentials){
-  return fetch("https://2for20.pythonanywhere.com/api/users/token",{
-    method:"POST",
-    headers:{
-      'Origin':'http://localhost:3000',
-      'Content-Type': 'application/json'
-
-    },
-    body:JSON.stringify(credentials)
-  })
-    .then(data=>data.json())
-
-}
 
 
 export default function Login(){
@@ -20,15 +8,27 @@ export default function Login(){
   
   const[password,setPassword]=useState("");
   const[email,setEmail]=useState("");
-
+  const login_url='/token'
   const handleSubmit = async e => {
     e.preventDefault();
-    await loginUser({
+    try{
+      const response= await axios.post(login_url,JSON.stringify({email,password}),
+        {
+          headers: {'Access-Control-Allow-Origin':'http://localhost:3000/','Content-Type':'application/json', },
+          withCredentials:true
+          
 
-      
-      "email":email,
-      "password":password
-    });
+        }
+      );
+      setEmail("");
+      setPassword("");
+
+
+  }catch(err){
+    console.log(err);
+
+
+  }
     
   }
 
