@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL:"https://2for20.pythonanywhere.com/api/users"
+  baseURL:"http://localhost:8000/api/users"
 })
