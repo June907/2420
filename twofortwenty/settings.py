@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'webpack_loader',
     'rest_framework_simplejwt.token_blacklist',
     'corsheaders',
-    'posts'
+    'posts',
 ]
 
 REST_FRAMEWORK = {

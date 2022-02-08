@@ -1,16 +1,28 @@
 import React, { useState } from "react";
 
+<<<<<<< HEAD
 async function loginUser(account){
   return fetch("https://2for20.pythonanywhere.com/api/users/token",{
     method:"POST",
     headers:{
       'Access-Control-Allow-Credentials':true,
       'Origin':'http://localhost:3000',
+=======
+async function loginUser(credentials){
+  return fetch("https://2for20.pythonanywhere.com/api/users/token",{
+    method:"POST",
+    headers:{
+      'Origin':'http://localhost:8000',
+>>>>>>> 4fd8a0b58ea3786326018ab660f93d021adf5f75
       'Content-Type': 'application/json'
-
     },
+<<<<<<< HEAD
     credentials:"include",
     body:JSON.stringify(account)
+=======
+    body:JSON.stringify(credentials),
+    credentials: 'include'
+>>>>>>> 4fd8a0b58ea3786326018ab660f93d021adf5f75
   })
     .then(data=>data.json())
 
