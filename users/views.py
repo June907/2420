@@ -89,6 +89,7 @@ class LoginView(APIView):
             response.data = {'message': 'Login successful.', 'data': data}
 
             origin = ""
+            
             if request.headers.get('Origin') in settings.CORS_ALLOWED_ORIGINS:
                 origin = request.headers.get('Origin')
 
