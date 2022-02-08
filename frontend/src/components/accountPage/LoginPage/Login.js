@@ -4,11 +4,11 @@ async function loginUser(credentials){
   return fetch("https://2for20.pythonanywhere.com/api/users/token",{
     method:"POST",
     headers:{
-      'Origin':'http://localhost:3000',
+      'Origin':'http://localhost:8000',
       'Content-Type': 'application/json'
-
     },
-    body:JSON.stringify(credentials)
+    body:JSON.stringify(credentials),
+    credentials: 'include'
   })
     .then(data=>data.json())
 
