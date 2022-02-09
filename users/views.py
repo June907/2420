@@ -95,7 +95,7 @@ class LoginView(APIView):
                 response.headers['Access-Control-Allow-Origin'] = origin
 
             response.headers['Access-Control-Allow-Origin'] = origin
-            response.headers['Access-Control-Allow-Credentials'] = 'true'
+            response.headers['Access-Control-Allow-Credentials'] = True
             response.status = status.HTTP_200_OK
 
             return response
