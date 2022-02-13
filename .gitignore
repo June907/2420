@@ -57,6 +57,7 @@ tmp_email/
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+axios.js
 
 # old apps
 
