@@ -1,20 +1,38 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Footer from "../homePage/footer/Footer";
+import axios from "./LoginPage/axios";
 
 
-async function loginUser(credentials){
-  return fetch("https://2for20.pythonanywhere.com/api/users/register",{
-    method:"POST"
-  })
-}
+
 
 export default function Signup(){
-  const[userName,setUserName]=useState();
-  const[password,setPassword]=useState();
-  //const[fName,setfName]=useState();
-  //const[lName,setlName]=useState();
-  const[email,setEmail]=useState();
+  const[userName,setUserName]=useState("");
+  const[email,setEmail]=useState("");
+  const[password,setPassword]=useState("");
+  const[fName,setfName]=useState("");
+  const[lName,setlName]=useState("");
+  const signup_url='/register';
+  const handleSubmit = async e => {
+    e.preventDefault();
+    try{
+      const response= await axios.post(signup_url,JSON.stringify({Username: userName, Email:email,
+      Passowrd:password,Firstname:fName,Lastname:lName}),
+        {
+          headers: {'Access-Control-Allow-Origin':'http://localhost:3000/','Content-Type':'application/json', },
+          withCredentials:true
+
+
+        }
+      );
+      setUserName("");
+      setEmail("");
+      setPassword("");
+      setfName("");
+      setlName("");
+    }catch(err){
+      console.log(err);
+    }
+  }
 
 
 
@@ -25,7 +43,7 @@ export default function Signup(){
       <h1 className="center">Sign Up </h1>
 
 
-      <form>
+      <form onSubmit={handleSubmit}>
       <input
           className="signup-input"
           onChange={e=>setUserName(e.target.value)}
@@ -57,6 +75,24 @@ export default function Signup(){
           placeholder="Password"
 
 
+
+        />
+        <input
+          className="signup-input"
+          onChange={e=>setfName(e.target.value)}
+          type="text"
+          name="fistName"
+          value={fName}
+          placeholder="First Name"
+
+        />
+        <input
+          className="signup-input"
+          onChange={e=>setlName(e.target.value)}
+          type="text"
+          name="lastName"
+          value={lName}
+          placeholder="Last Name"
 
         />
         <button>Submit</button>

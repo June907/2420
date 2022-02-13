@@ -23,6 +23,7 @@ __pycache__/
 # npm
 node_modules/
 npm-debug.log
+axios.js
 
 # Webpack
 
