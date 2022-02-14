@@ -4,7 +4,7 @@ async function loginUser(credentials){
   return fetch("https://2for20.pythonanywhere.com/api/users/token",{
     method:"POST",
     headers:{
-      'Origin':'http://localhost:8000',
+      'Origin':'https://2for20.pythonanywhere.com/api/users/token',
       'Content-Type': 'application/json'
     },
     body:JSON.stringify(credentials),
@@ -16,6 +16,7 @@ async function loginUser(credentials){
 
 
 export default function Login(){
+  
   
   
   const[password,setPassword]=useState("");

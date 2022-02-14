@@ -153,7 +153,7 @@ SIMPLE_JWT = {
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8000",
     "https://2for20.pythonanywhere.com",
-    "https://2for20.pythonanywhere.com",
+    "http://2for20.pythonanywhere.com",
     "http://localhost:3000",
 ]
 
