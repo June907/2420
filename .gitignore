@@ -23,6 +23,7 @@ __pycache__/
 # npm
 node_modules/
 npm-debug.log
+axios.js
 
 # Webpack
 
@@ -56,6 +57,7 @@ tmp_email/
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+axios.js
 
 # old apps
 

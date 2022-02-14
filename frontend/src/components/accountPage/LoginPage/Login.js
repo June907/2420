@@ -1,45 +1,62 @@
+
 import React, { useState } from "react";
-
-async function loginUser(credentials){
-  return fetch("https://2for20.pythonanywhere.com/api/users/token",{
-    method:"POST",
-    headers:{
-      'Origin':'https://2for20.pythonanywhere.com/api/users/token',
-      'Content-Type': 'application/json'
-    },
-    body:JSON.stringify(credentials),
-    credentials: 'include'  
-  })
-    .then(data=>data.json())
-
-}
+import { useNavigate, useLocation} from "react-router-dom";
+import axios from "./axios";
+import ProtectedRoute from "./ProtectedRoute";
+import { Auth } from "./Auth";
 
 
 export default function Login(){
-  
-  
-  
   const[password,setPassword]=useState("");
   const[email,setEmail]=useState("");
-
+  //const{setAuth}=Auth();
+  const[auth, setAuth]=useState(false);
+  //const location = useLocation();
+  //const from = location.state?.from?.pathname || "/";
+  const login_url='/token'
+  const navigate=useNavigate()
   const handleSubmit = async e => {
     e.preventDefault();
-    await loginUser({
+    try{
+      const response= await axios.post(login_url,JSON.stringify({email,password}),
+        {
+          headers: {'Access-Control-Allow-Origin':'http://localhost:8000/','Content-Type':'application/json', },
+          withCredentials:true
+
+
+        }
+      );
 
       
-      "email":email,
-      "password":password
-    });
-    
+      //setAuth({user:true});
+      setEmail("");
+      setPassword("");
+      setAuth(true);
+      //navigate(from, { replace: true });
+      console.log(response?.data);
+      localStorage.setItem("isAuth","true");
+      const isAuth=localStorage.getItem("isAuth");
+      console.log(isAuth);
+      //<ProtectedRoute isAuth={auth}/>
+      navigate("/profile");
+      
+
+
+
+
+  }catch(err){
+    console.log(err);
+
+
+  }
+
   }
 
 
-  
   return(
     <div>
       <h1 className="center">Login</h1>
-        
-      
+
 
       <form onSubmit={handleSubmit}>
 
@@ -62,10 +79,13 @@ export default function Login(){
           placeholder="Password"
 
 
-          
+
         />
+        
         <button>Submit</button>
+        
       </form>
+
 
 
 
