@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 import os
 from pathlib import Path
-from .credentials import SECRET_KEY_
+from .credentials import SECRET_KEY_, PG_HOST, PG_NAME, PG_PASS, PG_PORT, PG_USER
 from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -28,7 +28,7 @@ SECRET_KEY = SECRET_KEY_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '2for20.pythonanywhere.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '2for20.pythonanywhere.com', 'twofortwenty-dev.us-west-2.elasticbeanstalk.com']
 
 
 # Application definition
@@ -155,6 +155,7 @@ CORS_ALLOWED_ORIGINS = [
     "https://2for20.pythonanywhere.com",
     "http://2for20.pythonanywhere.com",
     "http://localhost:3000",
+    "http://twofortwenty-dev.us-west-2.elasticbeanstalk.com",
 ]
 
 # Internationalization
@@ -179,3 +180,14 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'frontend/static'),
 )
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': PG_NAME,
+#         'USER': PG_USER,
+#         'PASSWORD': PG_PASS,
+#         'HOST': PG_HOST,
+#         'PORT': PG_PORT,
+#     }
+# }
