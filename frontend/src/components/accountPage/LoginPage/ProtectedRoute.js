@@ -10,10 +10,10 @@ export default function ProtectedRoute(props){
   const location=useLocation();
   return(
     isAuth==="true"?<Outlet/>:<Navigate to="/login" state={{from: location}} replace/>
-    
 
 
-    
+
+
 
   )
 

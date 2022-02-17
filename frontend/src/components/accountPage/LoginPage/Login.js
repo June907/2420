@@ -4,7 +4,7 @@ import { useNavigate, useLocation} from "react-router-dom";
 import axios from "./axios";
 import ProtectedRoute from "./ProtectedRoute";
 import { Auth } from "./Auth";
-
+import "./Login.css"
 
 export default function Login(){
 

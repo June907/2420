@@ -1,6 +1,6 @@
 import React from "react";
 
-import Signup from "./Signup";
+import Signup from "./LoginPage/Signup";
 
 export default function Accounts(){
   return(

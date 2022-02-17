@@ -8,7 +8,7 @@ import Accounts from "./accountPage/Accounts";
 import ProtectedRoute from "./accountPage/LoginPage/ProtectedRoute";
 import LoginPage from "./accountPage/LoginPage/LoginPage";
 import Fixedbanner from "./homePage/Fixedbanner";
-import Profile from "./accountPage/LoginPage/Profile";
+import ProfileHome from "./accountPage/ProfileHome"
 
 
 require(".././styles.scss");
@@ -26,12 +26,13 @@ function App(){
           <Route path="/about" element={<About/>}/>
           <Route path="/account" element={<Accounts/>}/>
           <Route path="/login" element={<LoginPage/>}/>
-        {/*private route */}
-          <Route element={<ProtectedRoute/>}>
-            <Route path="/profile" element={<Profile/>}/>
-          </Route>
-
         </Route>
+        {/*private route */}
+          {/*<Route element={<ProtectedRoute/>}>*/}
+            <Route path="/profile" element={<ProfileHome/>}/>
+          
+
+        {/* </Route> */}
       
       </Routes>
       
