@@ -7,7 +7,6 @@ import { Auth } from "./Auth";
 import "./Login.css"
 
 export default function Login(){
-
   const[password,setPassword]=useState("");
   const[email,setEmail]=useState("");
   //const{setAuth}=Auth();
