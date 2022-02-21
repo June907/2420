@@ -9,8 +9,8 @@ import os
 from rest_framework.response import Response
 
 
-user_serializer_fields = ['id', 'username',
-                          'first_name', 'last_name', 'created_at', 'profile_picture', 'is_subscribed']
+user_serializer_fields = ('id', 'username',
+                          'first_name', 'last_name', 'date_joined', 'profile_picture', 'company')
 
 
 def checkForInappropriateNames(username, first_name, last_name):
@@ -45,20 +45,15 @@ def checkForInappropriateNames(username, first_name, last_name):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    is_subscribed = serializers.SerializerMethodField()
-
     class Meta:
         model = User
         fields = user_serializer_fields
 
 
-class UserSerializerWithEmail(UserSerializer):
-    is_subscribed = serializers.SerializerMethodField()
-
+class UserSerializerWithEmail(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields_ = user_serializer_fields
-        fields_.append('email')
+        fields_ = user_serializer_fields + ('email',)
         fields = fields_
 
 

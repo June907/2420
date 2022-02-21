@@ -201,16 +201,23 @@ class UpdateUser(generics.GenericAPIView):
         return Response({'message': 'Saved user settings.', 'user': UserSerializer(request.user).data}, status=status.HTTP_200_OK)
 
 
-class GetUserById(generics.GenericAPIView):
+class GetUserByIdentifier(generics.GenericAPIView):
     permission_classes = [permissions.AllowAny]
 
-    def post(self, request, format=None):
-        if 'id' in request.data:
+    def get(self, request, format=None):
+        if 'id' in request.data or 'username' in request.data:
             try:
                 user = User.objects.filter(pk=request.data['id'])[0]
                 return Response({'message': 'User received.', 'user': UserSerializer(user).data}, status=status.HTTP_200_OK)
             except IndexError:
                 return Response({'message': "This user doesn't exist."}, status=status.HTTP_404_NOT_FOUND)
+            except KeyError:
+                try:
+                    user = User.objects.filter(username=request.data['username'])[0]
+                    return Response({'message': 'User received.', 'user': UserSerializer(user).data}, status=status.HTTP_200_OK)
+                except IndexError:
+                    return Response({'message': "This user doesn't exist."}, status=status.HTTP_404_NOT_FOUND)
+
         return Response({"message": "Invalid data."}, status=status.HTTP_400_BAD_REQUEST)
 
 
