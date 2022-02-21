@@ -17,6 +17,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.token_blacklist.models import OutstandingToken
 from django.middleware import csrf
 from django.conf import settings
+import json
 
 
 class RegisterView(generics.GenericAPIView):
@@ -63,6 +64,19 @@ def get_tokens_for_user(user):
 class LoginView(APIView):
     permission_classes = [permissions.AllowAny]
 
+    # def options(self, request, format=None):
+    #     response = Response()
+
+    #     origin = "asdf"
+
+    #     if request.headers.get('Origin') in settings.CORS_ALLOWED_ORIGINS:
+    #         origin = request.headers.get('Origin')
+
+    #     response['Access-Control-Allow-Origin'] = "asdf"
+    #     response['Access-Control-Allow-Credentials'] = json.dumps(True)
+    #     return response
+
+
     def post(self, request, format=None):
         user = authenticate(email=request.data.get(
             'email'), password=request.data.get('password'))
@@ -88,14 +102,6 @@ class LoginView(APIView):
             )
             response.data = {'message': 'Login successful.', 'data': data}
 
-            origin = ""
-
-            if request.headers.get('Origin') in settings.CORS_ALLOWED_ORIGINS:
-                origin = request.headers.get('Origin')
-                response.headers['Access-Control-Allow-Origin'] = origin
-
-            response.headers['Access-Control-Allow-Origin'] = origin
-            response.headers['Access-Control-Allow-Credentials'] = True
             response.status = status.HTTP_200_OK
 
             return response

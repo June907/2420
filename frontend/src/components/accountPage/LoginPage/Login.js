@@ -20,7 +20,7 @@ export default function Login(){
     try{
       const response= await axios.post(login_url,JSON.stringify({email,password}),
         {
-          headers: {'Access-Control-Allow-Origin':'http://localhost:8000/','Content-Type':'application/json', },
+          headers: {'Content-Type':'application/json' },
           withCredentials:true
 
 

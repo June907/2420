@@ -104,12 +104,12 @@ WSGI_APPLICATION = 'twofortwenty.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 WEBPACK_LOADER = {
     'DEFAULT': {
@@ -158,6 +158,8 @@ CORS_ALLOWED_ORIGINS = [
     "http://twofortwenty-dev.us-west-2.elasticbeanstalk.com",
 ]
 
+CORS_ALLOW_CREDENTIALS = True
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
@@ -181,13 +183,13 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'frontend/static'),
 )
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': PG_NAME,
-#         'USER': PG_USER,
-#         'PASSWORD': PG_PASS,
-#         'HOST': PG_HOST,
-#         'PORT': PG_PORT,
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': PG_NAME,
+        'USER': PG_USER,
+        'PASSWORD': PG_PASS,
+        'HOST': PG_HOST,
+        'PORT': PG_PORT,
+    }
+}
