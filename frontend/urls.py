@@ -22,4 +22,5 @@ urlpatterns = [
     path('about', index),
     path('account', index),
     path('login', index),
+    path('profile', index),
 ]

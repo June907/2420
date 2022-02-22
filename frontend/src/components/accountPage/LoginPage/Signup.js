@@ -11,14 +11,15 @@ export default function Signup(){
   const[password,setPassword]=useState("");
   const[fName,setfName]=useState("");
   const[lName,setlName]=useState("");
+  const[company,setCompany]=useState("");
   const signup_url='/register';
   const handleSubmit = async e => {
     e.preventDefault();
     try{
-      const response= await axios.post(signup_url,JSON.stringify({Username: userName, Email:email,
-      Passowrd:password,Firstname:fName,Lastname:lName}),
+      const response= await axios.post(signup_url,JSON.stringify({username: userName, email:email,
+      password:password,first_name:fName,last_name:lName, company:company}),
         {
-          headers: {'Access-Control-Allow-Origin':'http://localhost:3000/','Content-Type':'application/json', },
+          headers: {'Content-Type':'application/json', },
           withCredentials:true
 
 
@@ -29,6 +30,7 @@ export default function Signup(){
       setPassword("");
       setfName("");
       setlName("");
+      setCompany("");
     }catch(err){
       console.log(err);
     }
@@ -93,6 +95,16 @@ export default function Signup(){
           name="lastName"
           value={lName}
           placeholder="Last Name"
+
+        />
+
+        <input
+          className="signup-input"
+          onChange={e=>setCompany(e.target.value)}
+          type="text"
+          name="company"
+          value={company}
+          placeholder="Company Name"
 
         />
         <button>Submit</button>
