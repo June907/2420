@@ -28,7 +28,8 @@ SECRET_KEY = SECRET_KEY_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '2for20.pythonanywhere.com', 'twofortwenty-dev.us-west-2.elasticbeanstalk.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '2for20.pythonanywhere.com',
+                 'twofortwenty-dev.us-west-2.elasticbeanstalk.com']
 
 
 # Application definition
@@ -147,7 +148,7 @@ SIMPLE_JWT = {
     'AUTH_COOKIE_SECURE': False,
     'AUTH_COOKIE_HTTP_ONLY': True,
     'AUTH_COOKIE_PATH': '/',
-    'AUTH_COOKIE_SAMESITE': 'Lax',
+    'AUTH_COOKIE_SAMESITE': 'None',
 }
 
 CORS_ALLOWED_ORIGINS = [
