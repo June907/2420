@@ -5,6 +5,8 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework import generics, status
 from .models import Post
 from users.models import User
+from .serializers import PostSerializer
+from datetime import datetime
 
 
 class CreateView(APIView):
@@ -14,16 +16,17 @@ class CreateView(APIView):
         try:
             if request.user.company not in request.data['tags']:
                 post = Post(user=request.user,
-                            title=request.data['title'], content=request.data['content'])
+                            title=request.data['title'], content=request.data['content'], ticker=request.data.get('ticker').lower(), tags=request.data['tags'])
                 if request.data.get('has_posted') == True:
                     post.posted = True
+                    post.posted_at = datetime.now()
                     post.save()
                     return Response({'message': 'Posted successfully.'}, status=status.HTTP_201_CREATED)
                 post.save()
                 return Response({'message': 'Post created successfully.'}, status=status.HTTP_201_CREATED)
             return Response({'data': request.data['tags'], 'message': "Users cannot post about the company they are affiliated with. If you believe this is a mistake, please contact administration."}, status=status.HTTP_400_BAD_REQUEST)
         except KeyError:
-            return Response({'message': "Improperly configured request."}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'message': "Improperly configured request.", "tags": request.data}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class DeleteView(APIView):
@@ -69,3 +72,25 @@ class UpdateView(APIView):
             return Response({'message': "Improperly configured request."}, status=status.HTTP_400_BAD_REQUEST)
         except IndexError:
             return Response({'message': "No post with the provided ID."}, status=status.HTTP_400_BAD_REQUEST)
+
+class ShowPostsByTicker(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request, format=None):
+        # take in ticker(s) and return most recent associated posts
+        try:
+            post_limit = 10
+            ticker = request.data['ticker']
+            posts = Post.objects.filter(ticker=ticker.lower(), posted=True, deleted=False)
+            r = []
+            if len(posts) > 0:
+                counter = 0
+                for p in posts:
+                    if counter < post_limit:
+                        r.append(PostSerializer(p).data)
+                        counter = counter + 1
+                    else:
+                        break
+            return Response({'message': "Posts generated successfully.", 'posts': r}, status=status.HTTP_200_OK)
+        except KeyError:
+            return Response({'message': "Improperly configured request. Please include a 'ticker' value in the body."}, status=status.HTTP_400_BAD_REQUEST)

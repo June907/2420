@@ -3,11 +3,7 @@
   "assets": {
     "main.js": {
       "name": "main.js",
-<<<<<<< HEAD
-      "path": "C:\\Users\\17208\\OneDrive - UNCO Student\\Documents\\GitHub\\2420\\frontend\\static\\dist\\main.js",
-=======
-      "path": "C:\\Users\\ipbjs\\desktop\\djangoapps\\2420\\frontend\\static\\dist\\main.js",
->>>>>>> bd6e89cef8a27faaade54b9869ebb24bf347267c
+      "path": "C:\\Users\\ipbjs\\Desktop\\pythonapps\\twofortwenty\\frontend\\static\\dist\\main.js",
       "publicPath": "/static/dist/main.js"
     }
   },
