@@ -9,7 +9,7 @@ import ProtectedRoute from "./accountPage/LoginPage/ProtectedRoute";
 import LoginPage from "./accountPage/LoginPage/LoginPage";
 import Fixedbanner from "./homePage/Fixedbanner";
 import ProfileHome from "./accountPage/ProfileHome"
-
+import Explore from "./accountPage/PostPage/Explore"
 
 require(".././styles.scss");
 function App(){
@@ -30,6 +30,7 @@ function App(){
         {/*private route */}
           {/*<Route element={<ProtectedRoute/>}>*/}
             <Route path="/profile" element={<ProfileHome/>}/>
+            <Route path="/Explore" element={<Explore/>}/>
           
 
         {/* </Route> */}

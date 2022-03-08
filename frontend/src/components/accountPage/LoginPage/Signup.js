@@ -107,7 +107,7 @@ export default function Signup(){
           placeholder="Company Name"
 
         />
-        <button>Submit</button>
+        <button className="Loginbutton">Submit</button>
         <p className="text-light pCenter">Already have an account? Click here to <Link to="/login">Log in </Link></p>
 
       </form>

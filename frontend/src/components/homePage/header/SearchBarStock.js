@@ -52,6 +52,7 @@ export default class SearchBarStock extends Component {
           dataSource={this.state.dataSource}
           placeholder="search Ticker"
         />
+      
       </div>
           <Stock
             name={this.state.search}

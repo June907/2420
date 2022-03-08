@@ -3,11 +3,7 @@
   "assets": {
     "main.js": {
       "name": "main.js",
-<<<<<<< HEAD
       "path": "C:\\Users\\17208\\OneDrive - UNCO Student\\Documents\\GitHub\\2420\\frontend\\static\\dist\\main.js",
-=======
-      "path": "C:\\Users\\ipbjs\\desktop\\djangoapps\\2420\\frontend\\static\\dist\\main.js",
->>>>>>> bd6e89cef8a27faaade54b9869ebb24bf347267c
       "publicPath": "/static/dist/main.js"
     }
   },
@@ -16,5 +12,7 @@
       "main.js"
     ]
   },
-  "publicPath": "/static/dist/"
+  "publicPath": "/static/dist/",
+  "error": "ModuleBuildError",
+  "message": "Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: C:\\Users\\17208\\OneDrive - UNCO Student\\Documents\\GitHub\\2420\\frontend\\src\\components\\accountPage\\PostPage\\ShowPost.js: Unexpected token, expected \",\" (7:34)\n\n   5 |   const[ticker,setTicker]=(\"AAPL\");\n   6 |\n>  7 |   axios({url:showPost_url, method data:{ticker:ticker}})\n     |                                   ^\n   8 |   .then(res=>{\n   9 |     console.log(res);\n  10 |     \n    at Object._raise (C:\\Users\\17208\\OneDrive - UNCO Student\\Documents\\GitHub\\2420\\frontend\\node_modules\\@babel\\parser\\lib\\index.js:569:17)\n    at Object.raiseWithData (C:\\Users\\17208\\OneDrive - UNCO Student\\Documents\\GitHub\\2420\\frontend\\node_modules\\@babel\\parser\\lib\\index.js:562:17)\n    at Object.raise (C:\\Users\\17208\\OneDrive - UNCO Student\\Documents\\GitHub\\2420\\frontend\\node_modules\\@babel\\parser\\lib\\index.js:523:17)\n    at Object.unexpected (C:\\Users\\17208\\OneDrive - UNCO Student\\Documents\\GitHub\\2420\\frontend\\node_modules\\@babel\\parser\\lib\\index.js:3601:16)\n    at Object.expect (C:\\Users\\17208\\OneDrive - UNCO Student\\Documents\\GitHub\\2420\\frontend\\node_modules\\@babel\\parser\\lib\\index.js:3575:28)\n    at Object.parseObjectLike (C:\\Users\\17208\\OneDrive - UNCO Student\\Documents\\GitHub\\2420\\frontend\\node_modules\\@babel\\parser\\lib\\index.js:12547:14)\n    at Object.parseExprAtom (C:\\Users\\17208\\OneDrive - UNCO Student\\Documents\\GitHub\\2420\\frontend\\node_modules\\@babel\\parser\\lib\\index.js:11990:23)\n    at Object.parseExprAtom (C:\\Users\\17208\\OneDrive - UNCO Student\\Documents\\GitHub\\2420\\frontend\\node_modules\\@babel\\parser\\lib\\index.js:7523:20)\n    at Object.parseExprSubscripts (C:\\Users\\17208\\OneDrive - UNCO Student\\Documents\\GitHub\\2420\\frontend\\node_modules\\@babel\\parser\\lib\\index.js:11658:23)\n    at Object.parseUpdate (C:\\Users\\17208\\OneDrive - UNCO Student\\Documents\\GitHub\\2420\\frontend\\node_modules\\@babel\\parser\\lib\\index.js:11638:21)"
 }

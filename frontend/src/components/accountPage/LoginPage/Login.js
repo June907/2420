@@ -13,7 +13,7 @@ export default function Login(){
   const[auth, setAuth]=useState(false);
   //const location = useLocation();
   //const from = location.state?.from?.pathname || "/";
-  const login_url='/token'
+  const login_url='/users/token'
   const navigate=useNavigate()
   const handleSubmit = async e => {
     e.preventDefault();
@@ -55,6 +55,7 @@ export default function Login(){
 
   return(
     <div>
+    
       <h1 className="center">Login</h1>
 
 
@@ -82,7 +83,7 @@ export default function Login(){
 
         />
         
-        <button>Submit</button>
+        <button className="Loginbutton">Submit</button>
         
       </form>
 
