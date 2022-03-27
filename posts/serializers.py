@@ -1,10 +1,11 @@
 from rest_framework import serializers
 from .models import Post
 
+
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
-        fields = ('user', 'title', 'content', 'tags', 'ticker', 'posted_at')
+        fields = ('user', 'title', 'content', 'tags', 'posted_at')
 
         def get_tags(self, obj):
             tags = []

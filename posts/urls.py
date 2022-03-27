@@ -14,12 +14,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from .views import CreateView, DeleteView, UpdateView, ShowPostsByTicker
+from .views import CreateView, DeleteView, UpdateView, ShowPostsByTag
 
 
 urlpatterns = [
     path('create', CreateView.as_view(), name='create-post'),
     path('delete', DeleteView.as_view(), name='delete-post'),
     path('update', UpdateView.as_view(), name='update-post'),
-    path('show', ShowPostsByTicker.as_view(), name='show-ticker')
+    path('show', ShowPostsByTag.as_view(), name='show-ticker')
 ]

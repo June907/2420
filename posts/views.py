@@ -16,7 +16,7 @@ class CreateView(APIView):
         try:
             if request.user.company not in request.data['tags']:
                 post = Post(user=request.user,
-                            title=request.data['title'], content=request.data['content'], ticker=request.data.get('ticker').lower(), tags=request.data['tags'])
+                            title=request.data['title'], content=request.data['content'], tags=request.data['tags'])
                 if request.data.get('has_posted') == True:
                     post.posted = True
                     post.posted_at = datetime.now()
@@ -24,9 +24,9 @@ class CreateView(APIView):
                     return Response({'message': 'Posted successfully.'}, status=status.HTTP_201_CREATED)
                 post.save()
                 return Response({'message': 'Post created successfully.'}, status=status.HTTP_201_CREATED)
-            return Response({'data': request.data['tags'], 'message': "Users cannot post about the company they are affiliated with. If you believe this is a mistake, please contact administration."}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'message': "Users cannot post about the company they are affiliated with. If you believe this is a mistake, please contact administration."}, status=status.HTTP_400_BAD_REQUEST)
         except KeyError:
-            return Response({'message': "Improperly configured request.", "tags": request.data}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'message': "Improperly configured request."}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class DeleteView(APIView):
@@ -73,15 +73,17 @@ class UpdateView(APIView):
         except IndexError:
             return Response({'message': "No post with the provided ID."}, status=status.HTTP_400_BAD_REQUEST)
 
-class ShowPostsByTicker(APIView):
+
+class ShowPostsByTag(APIView):
     permission_classes = [AllowAny]
 
     def get(self, request, format=None):
         # take in ticker(s) and return most recent associated posts
         try:
             post_limit = 10
-            ticker = request.data['ticker']
-            posts = Post.objects.filter(ticker=ticker.lower(), posted=True, deleted=False)
+            tags = request.data['tags']
+            posts = Post.objects.filter(
+                tags__contains=tags, posted=True, deleted=False)
             r = []
             if len(posts) > 0:
                 counter = 0
