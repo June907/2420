@@ -28,12 +28,12 @@ function App(){
           <Route path="/login" element={<LoginPage/>}/>
         </Route>
         {/*private route */}
-          {/*<Route element={<ProtectedRoute/>}>*/}
+          <Route element={<ProtectedRoute/>}>
             <Route path="/profile" element={<ProfileHome/>}/>
             <Route path="/Explore" element={<Explore/>}/>
           
 
-        {/* </Route> */}
+        </Route>
       
       </Routes>
       

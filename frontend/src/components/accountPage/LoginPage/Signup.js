@@ -12,7 +12,7 @@ export default function Signup(){
   const[fName,setfName]=useState("");
   const[lName,setlName]=useState("");
   const[company,setCompany]=useState("");
-  const signup_url='/register';
+  const signup_url='users/register';
   const handleSubmit = async e => {
     e.preventDefault();
     try{

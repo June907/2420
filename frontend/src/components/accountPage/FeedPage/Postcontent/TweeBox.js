@@ -33,7 +33,7 @@ export default function FeedBox(){
     <div className="tweetBox">
       <form>
         
-        <TextField fullWidth label="What's happening?" id="fullWidth" style={{color:"white"}}>
+        <TextField fullWidth label="What's happening?" id="fullWidth" style={{backgroundColor:"white"}}>
           <input
             value={content}
             onChange={(e) => setContent(e.target.value)}
