@@ -77,7 +77,7 @@ class UpdateView(APIView):
 class ShowPostsByTag(APIView):
     permission_classes = [AllowAny]
 
-    def get(self, request, format=None):
+    def post(self, request, format=None):
         # take in ticker(s) and return most recent associated posts
         try:
             post_limit = 10

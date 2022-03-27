@@ -5,6 +5,7 @@ import "antd/dist/antd.css";
 import ShowPost from "./ShowPost";
 
 export default class Explore extends Component {
+
   state = {
     search: "AAPL: Apple Inc.",
     dataSource: [],
@@ -35,27 +36,20 @@ export default class Explore extends Component {
       }
     };
     return (
-
-      
-      
       <div className="container">
-        
-          
           <div style={{ padding: "10%", marginLeft: "5%" }}>
-        
-          <AutoComplete
-          style={{ width: "90%" }}
-          className="d"
-          value={this.state.search}
-          onChange={(e) => handleSearch(e)}
-          onSelect={clearState}
-          dataSource={this.state.dataSource}
-          placeholder="search Ticker"
-        />
-      
+            <AutoComplete
+              style={{ width: "90%" }}
+              className="d"
+              value={this.state.search}
+              onChange={(e) => handleSearch(e)}
+              onSelect={clearState}
+              dataSource={this.state.dataSource}
+              placeholder="search Ticker"
+            />
           </div>
           <ShowPost
-            name={this.state.search}
+            //name={this.state.search}
             ></ShowPost>
       </div>
     )
