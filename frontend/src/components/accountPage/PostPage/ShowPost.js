@@ -1,28 +1,37 @@
-import React,{ useState }  from "react";
+import React,{ useState, useEffect } from "react";
 import axios from "../LoginPage/axios";
 import Post from "./Post";
 export default function ShowPost(){
   const showPost_url='/posts/show';
   const [title,setTitle] = useState("");
   const [content,setContent] = useState("");
-  var posts=[];
+  
   const tags=["AAPL"];
+  const[p, setP] = useState([]);
 
-  axios.post(showPost_url, JSON.stringify({tags}),{
-    headers: {'Content-Type':'application/json' },
-    withCredentials:true})
-  .then(res=>{
-    console.log(res);
-    setTitle(res.data.posts[0].title);
-    setContent(res.data.posts[0].content);
-    // for(const post in res.data.posts){
-    //   posts.push(post);
-    // }
+  useEffect(() =>{
+    axios.post(showPost_url, JSON.stringify({tags}),{
+      headers: {'Content-Type':'application/json' },
+      withCredentials:true})
+    .then(res=>{
+      console.log(res);
+      var posts=[];
+      for(var post in res.data.posts){
+        posts.push(res.data.posts[post]);
+      }
+      setP(posts)
+    })
+  }, [])
+
+  return p.map((obj) => {
+    console.log(p.length)
+    return <Post obj={obj}></Post>
   })
-
-  return(
-    <div>
-      <Post title={title}
-      content={content}></Post>
-    </div>);
 }
+
+
+
+// {posts.map((post) => {
+      //   return {post};
+      // })}
+
