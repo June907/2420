@@ -96,3 +96,24 @@ class ShowPostsByTag(APIView):
             return Response({'message': "Posts generated successfully.", 'posts': r}, status=status.HTTP_200_OK)
         except KeyError:
             return Response({'message': "Improperly configured request. Please include a 'ticker' value in the body."}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ShowAllPosts(APIView):
+    permission_classes = [AllowAny]
+
+    def post(self, request, format=None):
+        # return all posts in chronological order
+        post_limit = 10
+        posts = Post.objects.filter(posted=True, deleted=False)[:post_limit]
+        r = []
+        if len(posts) > 0:
+            counter = 0
+            for p in posts:
+                if counter < post_limit:
+                    r.append(PostSerializer(p).data)
+                    counter = counter + 1
+                else:
+                    break
+        if len(r) > 0:
+            return Response({'message': "Posts generated successfully.", 'posts': r}, status=status.HTTP_200_OK)
+        return Response({'message': "No posts found."}, status=status.HTTP_200_OK)
