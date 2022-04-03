@@ -1,35 +1,34 @@
+import React from "react";
 import {
   ChatBubbleOutline,
   FavoriteBorder,
   Publish,
   Repeat,
-  VerifiedUser,
 } from "@material-ui/icons";
-import React from "react";
-import "./Post.css";
 
-function Post({ displayName, username, verified, text, image, avatar }) {
-  return (
+import "./Post.css";
+export default function Post(props){
+
+  return(
+  <div>
     <div className="post">
-      <div className="post__avatar">
-      </div>
       <div className="post__body">
         <div className="post__header">
           <div className="post__headerText">
-            <h3>
-              {displayName}{" "}
+            <h3 className="text-light">
+              {props.user}{" "}
               <span className="post__headerSpecial">
-                {verified && <VerifiedUser className="post__badge" />} @
-                {username}
+                {props.obj.title}
+
               </span>
             </h3>
           </div>
-          <div className="post__headerDescription">
-            <p>{text}</p>
+          <div className="post__headerDescription text-light">
+            <p>{props.obj.content}</p>
           </div>
         </div>
-        <img src={image} alt="" />
-        <div className="post__footer">
+        {/* <img src={image} alt="" /> */}
+        <div className="post__footer text-light">
           <ChatBubbleOutline fontSize="small" />
           <Repeat fontSize="small" />
           <FavoriteBorder fontSize="small" />
@@ -37,6 +36,7 @@ function Post({ displayName, username, verified, text, image, avatar }) {
         </div>
       </div>
     </div>
-  );
+
+
+  </div>)
 }
-export default Post;
