@@ -1,9 +1,11 @@
 import React,{Component} from "react";
 import { AutoComplete, Icon } from "antd";
+import Widgets from "../FeedPage/widget/widget";
 import axios from "axios";
 import "antd/dist/antd.css";
 import ShowPost from "./ShowPost";
-
+import Sidebar from "../FeedPage/Sidebar/Sidebar";
+import "./Explore.css";
 export default class Explore extends Component {
 
   state = {
@@ -36,21 +38,25 @@ export default class Explore extends Component {
       }
     };
     return (
-      <div className="container">
-          <div style={{ padding: "10%", marginLeft: "5%" }}>
-            <AutoComplete
-              style={{ width: "90%" }}
-              className="d"
-              value={this.state.search}
-              onChange={(e) => handleSearch(e)}
-              onSelect={clearState}
-              dataSource={this.state.dataSource}
-              placeholder="search Ticker"
-            />
-          </div>
-          <ShowPost
-            //name={this.state.search}
-            ></ShowPost>
+      <div className="container main-layout">
+        <Sidebar></Sidebar>
+        <div className="container">
+            <div style={{ padding: "10%", marginLeft: "5%" }}>
+              <AutoComplete
+                style={{ width: "90%" }}
+                className="d"
+                value={this.state.search}
+                onChange={(e) => handleSearch(e)}
+                onSelect={clearState}
+                dataSource={this.state.dataSource}
+                placeholder="search Ticker"
+              />
+            </div>
+            <ShowPost
+              //name={this.state.search}
+              ></ShowPost>
+        </div>
+        <Widgets></Widgets>
       </div>
     )
   }

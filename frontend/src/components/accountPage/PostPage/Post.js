@@ -1,13 +1,45 @@
 import React from "react";
+import {
+  ChatBubbleOutline,
+  FavoriteBorder,
+  Publish,
+  Repeat,
+} from "@material-ui/icons";
 
+import "./Post.css";
 export default function Post(props){
 
   return(
   <div>
-    <h1>{props.title}</h1>
-    <h1>{props.content}</h1>
+    <div className="post">
+      <div className="post__body">
+        <div className="post__header">
+          <div className="post__headerText">
+            <h3 className="text-light">
+              {props.user}{" "}
+              <span className="post__headerSpecial">
+                {props.title}
 
+              </span>
+            </h3>
+          </div>
+          <div className="post__headerDescription text-light">
+                
+            <p>{props.content}</p>
+          </div>  
+        </div>
+        {/* <img src={image} alt="" /> */}
+        <div className="post__footer text-light">
+          <ChatBubbleOutline fontSize="small" />
+          <Repeat fontSize="small" />
+          <FavoriteBorder fontSize="small" />
+          <Publish fontSize="small" />
+        </div>
+      </div>
+    </div>
 
 
   </div>)
 }
+
+

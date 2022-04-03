@@ -26,8 +26,6 @@ export default function Login(){
 
         }
       );
-
-      
       //setAuth({user:true});
       setEmail("");
       setPassword("");
@@ -39,23 +37,12 @@ export default function Login(){
       console.log(isAuth);
       //<ProtectedRoute isAuth={auth}/>
       navigate("/profile");
-      
-
-
-
-
   }catch(err){
     console.log(err);
-
-
   }
-
-  }
-
-
+}
   return(
     <div>
-    
       <h1 className="center">Login</h1>
 
 
