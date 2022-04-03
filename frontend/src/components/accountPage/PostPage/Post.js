@@ -18,15 +18,14 @@ export default function Post(props){
             <h3 className="text-light">
               {props.user}{" "}
               <span className="post__headerSpecial">
-                {props.title}
+                {props.obj.title}
 
               </span>
             </h3>
           </div>
           <div className="post__headerDescription text-light">
-                
-            <p>{props.content}</p>
-          </div>  
+            <p>{props.obj.content}</p>
+          </div>
         </div>
         {/* <img src={image} alt="" /> */}
         <div className="post__footer text-light">

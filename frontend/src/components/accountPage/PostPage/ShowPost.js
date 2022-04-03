@@ -1,36 +1,33 @@
-import React,{ useState }  from "react";
+import React,{ useState, useEffect } from "react";
 import axios from "../LoginPage/axios";
 import Post from "./Post";
 import "./ShowPost.css";
-export default function ShowPost(){
+import GlobalAPI from "../globalAPI";
+export default function ShowPost(props){
   const showPost_url='/posts/show';
-  const [title,setTitle] = useState("");
-  const [content,setContent] = useState("");
-  const [user, setUser]=useState("");
-  const [posts, setPosts]=useState([]);
-  const tags=["AAPL"];
 
-  axios.post(showPost_url, JSON.stringify({tags}),{
-    headers: {'Content-Type':'application/json' },
-    withCredentials:true})
-  .then(res=>{
+   const [tags,setTags]=useState([props.name]);
+   const[p, setP] = useState([]);
+   
+
+  useEffect(() =>{
+    (async ()=>{
+    setTags([props.name]);
+    const res= await GlobalAPI(false,showPost_url, JSON.stringify({tags}));
     console.log(res);
-    setTitle(res.data.posts[0].title);
-    setContent(res.data.posts[0].content);
-    setUser(res.data.posts[0].user);
+    var posts=[];
+    for(var post in res.data.posts){
+      posts.push(res.data.posts[post]);
+    }
+      setP([""]);
+      setP(posts);
+    })();
+  }, [props.isClick])
 
-    // for(const post in res.data.posts){
-    //   posts.push(post);
-    // }
+  return p.map((obj) => {
+    console.log(p.length)
+    return <Post obj={obj}></Post>
+
   })
-
-  return(
-    <div className="feed">
-    <Post title={title}
-      content={content}
-      user={user}
-      />
-
-
-    </div>);
 }
+

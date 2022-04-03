@@ -53,7 +53,8 @@ export default class Explore extends Component {
               />
             </div>
             <ShowPost
-              //name={this.state.search}
+              name={this.state.search.substring(0,this.state.search.indexOf(":"))}
+              isClick={this.state.click}
               ></ShowPost>
         </div>
         <Widgets></Widgets>

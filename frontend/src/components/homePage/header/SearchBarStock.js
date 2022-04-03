@@ -39,10 +39,9 @@ export default class SearchBarStock extends Component {
       
       
       <div className="container">
-        
-          
+
           <div style={{ padding: "10%", marginLeft: "5%" }}>
-        
+
           <AutoComplete
           style={{ width: "90%" }}
           className="d"
@@ -52,7 +51,6 @@ export default class SearchBarStock extends Component {
           dataSource={this.state.dataSource}
           placeholder="search Ticker"
         />
-      
       </div>
           <Stock
             name={this.state.search}
@@ -63,5 +61,3 @@ export default class SearchBarStock extends Component {
           )
           }
   }
-          
-          
