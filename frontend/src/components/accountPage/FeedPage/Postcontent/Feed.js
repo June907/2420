@@ -4,7 +4,7 @@ import "./Feed.css";
 import Post from "./Post";
 import FeedBox from "./TweeBox";
 import axios from "../../LoginPage/axios";
-import GlobalAPI from "../../globalAPI";
+import GlobalAPI from "../../GlobalAPI";
 
 function Feed() {
   

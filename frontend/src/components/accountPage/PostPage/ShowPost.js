@@ -2,7 +2,7 @@ import React,{ useState, useEffect } from "react";
 import axios from "../LoginPage/axios";
 import Post from "./Post";
 import "./ShowPost.css";
-import GlobalAPI from "../globalAPI";
+import GlobalAPI from "../GlobalAPI";
 export default function ShowPost(props){
   const showPost_url='/posts/show';
 
