@@ -8,6 +8,8 @@ from users.models import User
 from .serializers import PostSerializer
 from datetime import datetime
 
+post_limit = 10
+
 
 class CreateView(APIView):
     permission_classes = [IsAuthenticated]
@@ -21,9 +23,13 @@ class CreateView(APIView):
                     post.posted = True
                     post.posted_at = datetime.now()
                     post.save()
-                    return Response({'message': 'Posted successfully.'}, status=status.HTTP_201_CREATED)
-                post.save()
-                return Response({'message': 'Post created successfully.'}, status=status.HTTP_201_CREATED)
+                else:
+                    post.save()
+                posts = Post.objects.filter(posted=True, deleted=False)[:10]
+                serialized_posts = []
+                for p in posts:
+                    serialized_posts.append(PostSerializer(p).data)
+                return Response({'message': 'Posted successfully.', 'posts': serialized_posts}, status=status.HTTP_201_CREATED)
             return Response({'message': "Users cannot post about the company they are affiliated with. If you believe this is a mistake, please contact administration."}, status=status.HTTP_400_BAD_REQUEST)
         except KeyError:
             return Response({'message': "Improperly configured request."}, status=status.HTTP_400_BAD_REQUEST)
