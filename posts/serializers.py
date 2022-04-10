@@ -21,10 +21,4 @@ class PostSerializer(serializers.ModelSerializer):
         return tags
 
     def get_user(self, obj):
-        user = obj.user
-        try:
-            user = User.objects.filter(id=user)[0]
-        except:
-            obj.deleted = True
-            obj.save()
-        return user.username
+        return obj.user.username

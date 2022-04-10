@@ -109,7 +109,6 @@ class ShowAllPosts(APIView):
 
     def post(self, request, format=None):
         # return all posts in chronological order
-        post_limit = 10
         posts = Post.objects.filter(posted=True, deleted=False)[:post_limit]
         r = []
         if len(posts) > 0:
