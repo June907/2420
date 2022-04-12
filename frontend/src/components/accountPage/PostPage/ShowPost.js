@@ -22,7 +22,7 @@ export default function ShowPost(props){
       setP([""]);
       setP(posts);
     })();
-  }, [props.isClick])
+  }, [props.name])
 
   return p.map((obj) => {
     console.log(p.length)

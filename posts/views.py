@@ -25,7 +25,10 @@ class CreateView(APIView):
                     post.save()
                 else:
                     post.save()
-                posts = Post.objects.filter(posted=True, deleted=False)[:10]
+                posts = Post.objects.filter(posted=True, deleted=False)
+                if len(posts) >post_limit:
+                    posts = posts[len(posts)-post_limit:]
+                posts=list(reversed(posts))
                 serialized_posts = []
                 for p in posts:
                     serialized_posts.append(PostSerializer(p).data)
@@ -86,10 +89,12 @@ class ShowPostsByTag(APIView):
     def post(self, request, format=None):
         # take in ticker(s) and return most recent associated posts
         try:
-            post_limit = 10
             tags = request.data['tags']
             posts = Post.objects.filter(
                 tags__contains=tags, posted=True, deleted=False)
+            if len(posts) >post_limit:
+                posts = posts[len(posts)-post_limit:]
+            posts=list(reversed(posts))
             r = []
             if len(posts) > 0:
                 counter = 0
@@ -109,7 +114,10 @@ class ShowAllPosts(APIView):
 
     def post(self, request, format=None):
         # return all posts in chronological order
-        posts = Post.objects.filter(posted=True, deleted=False)[:post_limit]
+        posts = Post.objects.filter(posted=True, deleted=False)
+        if len(posts) >post_limit:
+            posts = posts[len(posts)-post_limit:]
+        posts=list(reversed(posts))
         r = []
         if len(posts) > 0:
             counter = 0
