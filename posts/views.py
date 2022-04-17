@@ -18,8 +18,11 @@ class CreateView(APIView):
     def post(self, request, format=None):
         try:
             if request.user.company is None or request.user.company not in request.data['tags']:
+                tags = request.data['tags']
+                for i in range(len(tags)):
+                    tags[i] = tags[i].lower()
                 post = Post(user=request.user,
-                            title=request.data['title'], content=request.data['content'], tags=request.data['tags'])
+                            title=request.data['title'], content=request.data['content'], tags=tags)
                 if request.data.get('has_posted') == True:
                     post.posted = True
                     post.posted_at = datetime.now()
@@ -27,9 +30,9 @@ class CreateView(APIView):
                 else:
                     post.save()
                 posts = Post.objects.filter(posted=True, deleted=False)
-                if len(posts) >post_limit:
+                if len(posts) > post_limit:
                     posts = posts[len(posts)-post_limit:]
-                posts=list(reversed(posts))
+                posts = list(reversed(posts))
                 serialized_posts = []
                 for p in posts:
                     serialized_posts.append(PostSerializer(p).data)
@@ -91,11 +94,13 @@ class ShowPostsByTag(APIView):
         # take in ticker(s) and return most recent associated posts
         try:
             tags = request.data['tags']
+            for i in range(len(tags)):
+                tags[i] = tags[i].lower()
             posts = Post.objects.filter(
                 tags__contains=tags, posted=True, deleted=False)
-            if len(posts) >post_limit:
+            if len(posts) > post_limit:
                 posts = posts[len(posts)-post_limit:]
-            posts=list(reversed(posts))
+            posts = list(reversed(posts))
             r = []
             if len(posts) > 0:
                 counter = 0
@@ -116,9 +121,9 @@ class ShowAllPosts(APIView):
     def post(self, request, format=None):
         # return all posts in chronological order
         posts = Post.objects.filter(posted=True, deleted=False)
-        if len(posts) >post_limit:
+        if len(posts) > post_limit:
             posts = posts[len(posts)-post_limit:]
-        posts=list(reversed(posts))
+        posts = list(reversed(posts))
         r = []
         if len(posts) > 0:
             counter = 0
