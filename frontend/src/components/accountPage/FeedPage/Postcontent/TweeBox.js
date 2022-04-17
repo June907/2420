@@ -3,9 +3,9 @@ import axios from "../../LoginPage/axios";
 import {Button, TextField} from "@material-ui/core";
 import "./TweetBox.css";
 import GlobalAPI from "../../GlobalAPI";
+import Ticker from "./Ticker";
 
 export default function FeedBox(props){
-
   const post_url='/posts/create';
   const[content,setContent]=useState("");
   const[title,setTitle]=useState("");
@@ -16,10 +16,8 @@ export default function FeedBox(props){
       console.log(content);
       
       const response=await GlobalAPI(false,post_url,JSON.stringify({title:title,content:content,tags:tags,has_posted:true}));
-      console.log(response);
       props.handleChangePosts(response.data.posts);
-      console.log(response);
-      
+      console.log(tags);
       console.log(response?.data);
 
 
@@ -28,7 +26,9 @@ export default function FeedBox(props){
     }
 
   }
-
+function handleChangeTag(e) {
+  setTag([e]);
+}
   return(
     <div className="tweetBox">
       <form>
@@ -39,11 +39,15 @@ export default function FeedBox(props){
             placeholder="What's happening?"
             type="text"
         />
-        <input
+        {/* <input
             value={tags}
             onChange={(e) => {setTag(e.target.value)}}
             placeholder="Tag: "
             type="text"
+        /> */}
+        <Ticker
+          value={tags}
+          handleChange={handleChangeTag}
         />
         {/* <input
           placeholder="Optional: Enter image URL"

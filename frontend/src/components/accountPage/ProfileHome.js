@@ -5,12 +5,13 @@ import axios from "./LoginPage/axios";
 import FeedBox from "./FeedPage/Postcontent/TweeBox";
 import Feed from "./FeedPage/Postcontent/Feed";
 import Widgets from "./FeedPage/widget/widget";
+import GlobalAPI from "./GlobalAPI";
 export default function ProfileHome(){
   const base_url='https://twofortwenty-dev.us-west-2.elasticbeanstalk.com/api/users/current'
   const user_url='/users/current'
   const [users,setUser]=useState("")
 
-  axios.get(user_url)
+  GlobalAPI(true,user_url)
   .then(res=>{
     console.log(res);
     setUser(res.data.user.username);

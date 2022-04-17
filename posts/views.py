@@ -1,3 +1,4 @@
+from ast import Or
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -16,7 +17,7 @@ class CreateView(APIView):
 
     def post(self, request, format=None):
         try:
-            if request.user.company not in request.data['tags']:
+            if request.user.company is None or request.user.company not in request.data['tags']:
                 post = Post(user=request.user,
                             title=request.data['title'], content=request.data['content'], tags=request.data['tags'])
                 if request.data.get('has_posted') == True:

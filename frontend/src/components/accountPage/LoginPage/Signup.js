@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import GlobalAPI from "../GlobalAPI";
 import axios from "./axios";
 
 
@@ -16,7 +17,7 @@ export default function Signup(){
   const handleSubmit = async e => {
     e.preventDefault();
     try{
-      const response= await axios.post(signup_url,JSON.stringify({username: userName, email:email,
+      const response= await GlobalAPI(false,signup_url,JSON.stringify({username: userName, email:email,
       password:password,first_name:fName,last_name:lName, company:company}),
         {
           headers: {'Content-Type':'application/json', },

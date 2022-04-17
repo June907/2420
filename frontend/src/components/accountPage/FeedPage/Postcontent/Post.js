@@ -18,7 +18,7 @@ export default function Post(props){
             <h3 className="text-light">
               {props.user}{" "}
               <span className="post__headerSpecial">
-                {props.obj.user}
+                {props.obj.user} {props.obj.posted_at}
 
               </span>
             </h3>

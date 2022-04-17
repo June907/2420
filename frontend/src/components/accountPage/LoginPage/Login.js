@@ -5,6 +5,7 @@ import axios from "./axios";
 import ProtectedRoute from "./ProtectedRoute";
 import { Auth } from "./Auth";
 import "./Login.css"
+import GlobalAPI from "../GlobalAPI";
 
 export default function Login(){
   const[password,setPassword]=useState("");
@@ -18,7 +19,7 @@ export default function Login(){
   const handleSubmit = async e => {
     e.preventDefault();
     try{
-      const response= await axios.post(login_url,JSON.stringify({email,password}),
+      const response= await GlobalAPI(false,login_url,JSON.stringify(({email,password})),
         {
           headers: {'Content-Type':'application/json' },
           withCredentials:true
