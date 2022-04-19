@@ -10,23 +10,31 @@ export default function ShowPost(props){
    const[p, setP] = useState([]);
    
 
-  useEffect(() =>{
-    (async ()=>{
-    setTags([props.name]);
+   
+
+   const fetchdata = async ()=>{
+    setTags(()=> [props.name]);
     const res= await GlobalAPI(false,showPost_url, JSON.stringify({tags}));
+      
+    console.log(tags);
     console.log(res);
     var posts=[];
     for(var post in res.data.posts){
       posts.push(res.data.posts[post]);
     }
-      setP([""]);
-      setP(posts);
-    })();
-  }, [props.name])
+    setP([""]);
+    setP(posts);
+
+   }
+  useEffect(() =>{
+    fetchdata();
+    
+  }, [props.isClick])
 
   return p.map((obj) => {
     console.log(p.length)
     return <Post obj={obj}></Post>
+    
 
   })
 }

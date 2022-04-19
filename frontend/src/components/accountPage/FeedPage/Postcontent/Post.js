@@ -19,7 +19,7 @@ export default function Post(props){
               {props.user}{" "}
               <span className="post__headerSpecial">
                 {props.obj.user} {props.obj.posted_at}
-
+                <span className="post__headerSpecial" style={{color:'red'}}>{props.obj.tags}</span>
               </span>
             </h3>
           </div>

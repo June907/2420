@@ -31,8 +31,9 @@ export default class Ticker extends Component {
       } else {
         this.setState({ search: e });
       }
-      this.props.handleChange(this.state.search);
     };
+    
+
     return (
       <div className="container">
           <div style={{marginLeft: "5%" }}>
@@ -43,10 +44,10 @@ export default class Ticker extends Component {
           onChange={(e) => handleSearch(e)}
           onSelect={clearState}
           dataSource={this.state.dataSource}
-          placeholder="search Ticker"
-
+          placeholder="Tag: "
         />
       </div>
+      
           </div>
         )
     }

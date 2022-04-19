@@ -16,8 +16,8 @@ import { Link } from "react-router-dom";
 function Sidebar() {
   return (
     <div className="sidebar">
-      <TwitterIcon className="sidebar__twitterIcon" />
-      <SidebarOption Icon={HomeIcon} text="Home" active={true} />
+      {/* <TwitterIcon className="sidebar__twitterIcon" /> */}
+      <Link to ="/profile"><SidebarOption Icon={HomeIcon} text="Home" active={true} /></Link>
       <Link to="/Explore"><SidebarOption Icon={SearchIcon}  text="Explore" /></Link>
       <SidebarOption Icon={NotificationsNoneIcon} text="Notifications" />
       <SidebarOption Icon={MailOutlineIcon} text="Messages" />
@@ -26,9 +26,9 @@ function Sidebar() {
       <SidebarOption Icon={PermIdentityIcon} text="Profile" />
       <SidebarOption Icon={MoreHorizIcon} text="More" />
 
-      <Button variant="outlined" className="sidebar__tweet" fullWidth>
+      {/* <Button variant="outlined" className="sidebar__tweet" fullWidth>
         Tweet
-      </Button>
+      </Button> */}
     </div>
   );
 }

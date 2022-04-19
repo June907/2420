@@ -9,7 +9,7 @@ import "./Explore.css";
 export default class Explore extends Component {
 
   state = {
-    search: "AAPL: Apple Inc.",
+    search: "",
     dataSource: [],
     click:false
   };
@@ -17,7 +17,7 @@ export default class Explore extends Component {
   render() {
     const clearState = () => {
       this.setState({ dataSource: [] });
-      this.setState({click:!this.state.click});
+      
     };
     const getTickerFromAPi = async (e) => {
       const response = await axios.get(
@@ -31,12 +31,20 @@ export default class Explore extends Component {
 
     const handleSearch = (e) => {
       if (e) {
-        
         this.setState({ search: e }, () => getTickerFromAPi(e));
       } else {
         this.setState({ search: e });
       }
     };
+
+    const handleClick=()=>{
+      this.setState({click:!this.state.click});
+    }
+    const handleClickClick=()=>{
+      this.setState({click:!this.state.click});
+      this.setState({click:!this.state.click});
+
+    }
     return (
       <div className="container main-layout">
         <Sidebar></Sidebar>
@@ -50,12 +58,16 @@ export default class Explore extends Component {
                 onSelect={clearState}
                 dataSource={this.state.dataSource}
                 placeholder="search Ticker"
+                onClick={handleClick}
               />
+              <button onClick={handleClickClick}>Confirm</button>
             </div>
+            
             <ShowPost
               name={this.state.search.substring(0,this.state.search.indexOf(":"))}
               isClick={this.state.click}
               ></ShowPost>
+              
         </div>
         <Widgets></Widgets>
       </div>

@@ -46,8 +46,8 @@ function handleChangeTag(e) {
             type="text"
         /> */}
         <Ticker
-          value={tags}
           handleChange={handleChangeTag}
+          value={tags}
         />
         {/* <input
           placeholder="Optional: Enter image URL"
