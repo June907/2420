@@ -5,7 +5,7 @@ import HomePageFeature from "./body/HomePageFeature";
 import HomePageIntro from "./body/HomePageIntro";
 import HomePageReviewIntro from "./footer/HomePageReviewIntro";
 import ReviewContent from "./footer/ReviewContent";
-
+import HomePost from "./header/HomePost";
 import SearchBarStock from "./header/SearchBarStock";
 
 
@@ -22,7 +22,7 @@ export default function HomePage (){
         <div className="container text-light">
         <div className="d-flex">
 
-        <Content/>
+        <HomePost/>
         <SearchBarStock/>
         </div>
 

@@ -3,6 +3,7 @@ import { AutoComplete, Icon } from "antd";
 import axios from "axios";
 import "antd/dist/antd.css";
 import Stock from "./Stock";
+import HomePost from "./HomePost";
 
 export default class SearchBarStock extends Component {
   state = {
@@ -34,13 +35,21 @@ export default class SearchBarStock extends Component {
         this.setState({ search: e });
       }
     };
+    const handleClick=()=>{
+      this.setState({click:!this.state.click});
+    }
+    const handleClickClick=()=>{
+      this.setState({click:!this.state.click});
+      this.setState({click:!this.state.click});
+
+    }
     return (
 
       
       
       <div className="container">
-
-          <div style={{ padding: "10%", marginLeft: "5%" }}>
+        
+        <div style={{ padding: "10%", marginLeft: "5%" }}>
 
           <AutoComplete
           style={{ width: "90%" }}
@@ -50,14 +59,21 @@ export default class SearchBarStock extends Component {
           onSelect={clearState}
           dataSource={this.state.dataSource}
           placeholder="search Ticker"
+          onClick={handleClick}
         />
-      </div>
+        
+        </div>
+        <button onClick={handleClickClick}>Confirm</button>
           <Stock
             name={this.state.search}
             symbol={this.state.search.substring(0,this.state.search.indexOf(":"))}
             isClick={this.state.click}
           />
-          </div>
+            <HomePost
+              symbol={this.state.search.substring(0,this.state.search.indexOf(":"))}
+              isClick={this.state.click}
+            />
+    </div>
           )
           }
   }
