@@ -46,7 +46,7 @@ function Blocks() {
                     Isaac is a third year Business Computer Information Systems Major interested in data analytics and large scale backend calculations. He took the lead roll in this project 
                     using management skills and large scale ideas to guide the more technical members of the team to create the website we planned and invisioned. Outside of school he participates 
                     in weightlighting and a competitive bowling league. <br/>
-                    <a href = "https://www.linkedin.com/in/isaac-ingalls-5609a017b/" target="_blank" rel="noreferrer">LinkedIn</a>
+                    <a href = "https://www.linkedin.com/in/erik-halenkamp-4b49451a6/" target="_blank" rel="noreferrer">LinkedIn</a>
                 </p>
             </div>
             <div className="blocks-picture">
