@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from .views import LogoutView, RegisterView, UpdateUser, LoginView, RefreshView, GetUser, GetUserByIdentifier
+from .views import LogoutView, RegisterView, UpdateUser, LoginView, RefreshView, GetUser, GetUserByIdentifier, CheckUser
 from .tokens import TokenObtainPair
 from rest_framework_simplejwt import views as jwt_views
 
@@ -29,4 +29,5 @@ urlpatterns = [
     path('update-user', UpdateUser.as_view(), name='update-user'),
     path('current', GetUser.as_view(), name='get-user'),
     path('get', GetUserByIdentifier.as_view(), name='get-user-by-id'),
+    path('check', CheckUser.as_view(), name='check-user')
 ]

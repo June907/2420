@@ -1,4 +1,4 @@
-import React,{Component} from "react";
+import React, { Component } from "react";
 import { AutoComplete, Icon } from "antd";
 import axios from "axios";
 import "antd/dist/antd.css";
@@ -9,13 +9,17 @@ export default class SearchBarStock extends Component {
   state = {
     search: "AAPL: Apple Inc.",
     dataSource: [],
-    click:false
+    click: false,
+    symbol: 'AAPL'
   };
 
   render() {
-    const clearState = () => {
+    var isClick = false;
+
+    const clearState = (e) => {
       this.setState({ dataSource: [] });
-      this.setState({click:!this.state.click});
+      isClick = !isClick;
+      this.setState({ symbol: e.split(":")[0] });
     };
     const getTickerFromAPi = async (e) => {
       const response = await axios.get(
@@ -29,53 +33,53 @@ export default class SearchBarStock extends Component {
 
     const handleSearch = (e) => {
       if (e) {
-        
         this.setState({ search: e }, () => getTickerFromAPi(e));
       } else {
         this.setState({ search: e });
       }
     };
-    const handleClick=()=>{
-      this.setState({click:!this.state.click});
+    const handleClick = () => {
+      // this.setState({ click: !this.state.click });
+      isClick = !isClick;
     }
-    const handleClickClick=()=>{
-      this.setState({click:!this.state.click});
-      this.setState({click:!this.state.click});
+    const handleClickClick = () => {
+      this.setState({ click: !this.state.click });
+      this.setState({ click: !this.state.click });
 
     }
     return (
       <div className="container">
 
-            <div style={{ padding: "10%", marginLeft: "5%" }}>
-              <AutoComplete
-              style={{ width: "90%" }}
-              className="d"
-              value={this.state.search}
-              onChange={(e) => handleSearch(e)}
-              onSelect={clearState}
-              dataSource={this.state.dataSource}
-              placeholder="search Ticker"
-              onClick={handleClick}
-              />
-            </div>
-            <div className="row">
-            <div className="col">
-            
+        <div style={{ padding: "10%", marginLeft: "5%" }}>
+          <AutoComplete
+            style={{ width: "90%" }}
+            className="d"
+            value={this.state.search}
+            onChange={(e) => handleSearch(e)}
+            onSelect={(e) => clearState(e)}
+            dataSource={this.state.dataSource}
+            placeholder="search Ticker"
+            onClick={handleClick}
+          />
+        </div>
+        <div className="row">
+          <div className="col">
+
             <Stock
               name={this.state.search}
-              symbol={this.state.search.substring(0,this.state.search.indexOf(":"))}
+              symbol={this.state.symbol}
               isClick={this.state.click}
             />
-            </div>
-            <div className="col">
-            <button className="text-dark d-flex justify-content-end" onClick={handleClickClick}>Show Related Posts</button>
-              <HomePost
-                symbol={this.state.search.substring(0,this.state.search.indexOf(":"))}
-                isClick={this.state.click}
-              />
           </div>
+          <div className="col">
+            {/* <button className="text-dark d-flex justify-content-end" onClick={handleClickClick}>Show Related Posts</button> */}
+            <HomePost
+              symbol={this.state.symbol}
+            // isClick={isClick}
+            />
           </div>
-    </div>
+        </div>
+      </div>
     )
   }
 }

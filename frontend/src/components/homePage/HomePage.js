@@ -1,5 +1,4 @@
-import React from "react";
-
+import React, { useState, useEffect } from "react";
 import Content from "./header/Content";
 import HomePageFeature from "./body/HomePageFeature";
 import HomePageIntro from "./body/HomePageIntro";
@@ -7,45 +6,57 @@ import HomePageReviewIntro from "./footer/HomePageReviewIntro";
 import ReviewContent from "./footer/ReviewContent";
 import HomePost from "./header/HomePost";
 import SearchBarStock from "./header/SearchBarStock";
+import { SettingsInputAntennaSharp } from "@material-ui/icons";
+import CheckAuth from "../accountPage/CheckAuth"
 
 
 
+export default function HomePage() {
 
-export default function HomePage (){
+  const [auth, changeAuth] = useState(false);
 
-    return (
+  const fetchdata = async () => {
+    const val = await CheckAuth();
+    changeAuth(val);
+  }
 
-      <div>
+  useEffect(() => {
+    fetchdata();
+    console.log(auth);
+  }, []);
+
+  return (
+
+    <div>
 
 
 
-        <div className="container text-light">
+      <div className="container text-light">
         <div className="d-flex">
-
-        <HomePost/>
-        <SearchBarStock/>
+          <HomePost />
+          <SearchBarStock />
         </div>
 
 
 
         <br></br>
         <br></br>
-        <HomePageIntro/>
+        <HomePageIntro />
         <br></br>
         <br></br>
-        <HomePageFeature/>
+        <HomePageFeature />
         <br></br>
         <br></br>
-        <HomePageReviewIntro/>
+        <HomePageReviewIntro />
         <br></br>
         <br></br>
-        <ReviewContent/>
+        <ReviewContent />
 
       </div>
 
     </div>
 
-    );
-  }
+  );
+}
 
 

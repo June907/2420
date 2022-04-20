@@ -76,7 +76,6 @@ class LoginView(APIView):
     #     response['Access-Control-Allow-Credentials'] = json.dumps(True)
     #     return response
 
-
     def post(self, request, format=None):
         user = authenticate(email=request.data.get(
             'email'), password=request.data.get('password'))
@@ -213,7 +212,8 @@ class GetUserByIdentifier(generics.GenericAPIView):
                 return Response({'message': "This user doesn't exist."}, status=status.HTTP_404_NOT_FOUND)
             except KeyError:
                 try:
-                    user = User.objects.filter(username=request.data['username'])[0]
+                    user = User.objects.filter(
+                        username=request.data['username'])[0]
                     return Response({'message': 'User received.', 'user': UserSerializer(user).data}, status=status.HTTP_200_OK)
                 except IndexError:
                     return Response({'message': "This user doesn't exist."}, status=status.HTTP_404_NOT_FOUND)
@@ -226,3 +226,12 @@ class GetUser(generics.GenericAPIView):
 
     def get(self, request, format=None):
         return Response({'message': 'User received.', 'user': UserSerializer(request.user).data}, status=status.HTTP_200_OK)
+
+
+class CheckUser(generics.GenericAPIView):
+    permission_classes = [permissions.AllowAny]
+
+    def get(self, request, format=None):
+        if request.user.id is not None:
+            return Response({'message': 'User is authenticated', 'user': UserSerializer(request.user).data, 'authenticated': True}, status=status.HTTP_200_OK)
+        return Response({'message': 'User is not authenticated', 'authenticated': False}, status=status.HTTP_200_OK)

@@ -1,4 +1,4 @@
-import React,{Component} from "react";
+import React, { Component } from "react";
 import { AutoComplete, Icon } from "antd";
 import axios from "axios";
 import "antd/dist/antd.css";
@@ -7,13 +7,14 @@ export default class Ticker extends Component {
   state = {
     search: "",
     dataSource: [],
-    click:false
+    click: false
   };
 
   render() {
-    const clearState = () => {
+    const clearState = (e) => {
       this.setState({ dataSource: [] });
-      this.setState({click:!this.state.click});
+      this.setState({ click: !this.state.click });
+      this.props.handleChange(e.split(":")[0]);
     };
     const getTickerFromAPi = async (e) => {
       const response = await axios.get(
@@ -32,23 +33,23 @@ export default class Ticker extends Component {
         this.setState({ search: e });
       }
     };
-    
+
 
     return (
       <div className="container">
-          <div style={{marginLeft: "5%" }}>
+        <div style={{ marginLeft: "5%" }}>
           <AutoComplete
-          style={{ width: "90%" }}
-          className="d"
-          value={this.state.search}
-          onChange={(e) => handleSearch(e)}
-          onSelect={clearState}
-          dataSource={this.state.dataSource}
-          placeholder="Tag: "
-        />
+            style={{ width: "90%" }}
+            className="d"
+            value={this.state.search}
+            onChange={(e) => handleSearch(e)}
+            onSelect={(e) => clearState(e)}
+            dataSource={this.state.dataSource}
+            placeholder="Tag: "
+          />
+        </div>
+
       </div>
-      
-          </div>
-        )
-    }
+    )
+  }
 }

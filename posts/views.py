@@ -20,7 +20,8 @@ class CreateView(APIView):
             if request.user.company is None or request.user.company not in request.data['tags']:
                 tags = request.data['tags']
                 for i in range(len(tags)):
-                    tags[i] = tags[i].lower()
+                    if tags[i] is not None:
+                        tags[i] = tags[i].upper()
                 post = Post(user=request.user,
                             title=request.data['title'], content=request.data['content'], tags=tags)
                 if request.data.get('has_posted') == True:
@@ -95,7 +96,8 @@ class ShowPostsByTag(APIView):
         try:
             tags = request.data['tags']
             for i in range(len(tags)):
-                tags[i] = tags[i].lower()
+                if tags[i] is not None:
+                    tags[i] = tags[i].upper()
             posts = Post.objects.filter(
                 tags__contains=tags, posted=True, deleted=False)
             if len(posts) > post_limit:
