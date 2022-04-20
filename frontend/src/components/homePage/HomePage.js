@@ -17,6 +17,7 @@ export default function HomePage() {
 
   const fetchdata = async () => {
     const val = await CheckAuth();
+
     changeAuth(val);
   }
 
