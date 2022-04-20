@@ -22,12 +22,12 @@ function Blocks() {
             </p>
         </div>
         <div className="blocks-picture">
-            Isaac Picture            
+            <img src= "frontend\src\components\aboutPage\ProfileImages\Isaac.jpg" alt="Isaac Picture"></img>         
         </div>
     </div>
     <div className="block">
         <div className="blocks-picture">
-            Jun Picture            
+            <img src= "../frontend/src/components/aboutPage/ProfileImages/Jun.jpg" alt="Junwen Picture"></img>         
         </div>
         <div className="blocks-text">
             <p className = "text-light">
@@ -50,12 +50,12 @@ function Blocks() {
                 </p>
             </div>
             <div className="blocks-picture">
-                Erik Picture            
+                <img src= "ProfileImages\Erik.jpg" alt="Erik Picture"></img>          
             </div>
         </div>
         <div className="block">
         <div className="blocks-picture">
-            Jun Picture            
+            <img src= "frontend\src\components\aboutPage\ProfileImages\Yusuf.jpg" alt="Yusuf Picture"></img>          
         </div>
         <div className="blocks-text">
             <p className = "text-light">
@@ -78,7 +78,7 @@ function Blocks() {
             </p>
         </div>
         <div className="blocks-picture">
-            Floyd Picture            
+            <img src= "frontend\src\components\aboutPage\ProfileImages\Floyd.jpg" alt="Floyd Picture"></img>       
         </div>
     </div>
 </div>
