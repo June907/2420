@@ -27,14 +27,11 @@ export default function HomePage() {
 
   return (
 
+
     <div>
-
-
-
       <div className="container text-light">
         <div className="d-flex">
-          <HomePost />
-          <SearchBarStock />
+          <SearchBarStock auth={auth} />
         </div>
 
 

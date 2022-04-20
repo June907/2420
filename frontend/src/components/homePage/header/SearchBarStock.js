@@ -4,23 +4,24 @@ import axios from "axios";
 import "antd/dist/antd.css";
 import Stock from "./Stock";
 import HomePost from "./HomePost";
+import { Auth } from "../../accountPage/LoginPage/Auth";
+import FeedBox from "./TweeBox";
 
 export default class SearchBarStock extends Component {
   state = {
     search: "AAPL: Apple Inc.",
     dataSource: [],
-    click: false,
+    update: false,
     symbol: 'AAPL'
   };
 
   render() {
-    var isClick = false;
 
     const clearState = (e) => {
       this.setState({ dataSource: [] });
-      isClick = !isClick;
       this.setState({ symbol: e.split(":")[0] });
     };
+
     const getTickerFromAPi = async (e) => {
       const response = await axios.get(
         `https://ticker-2e1ica8b9.now.sh/keyword/${e}`
@@ -38,15 +39,12 @@ export default class SearchBarStock extends Component {
         this.setState({ search: e });
       }
     };
-    const handleClick = () => {
-      // this.setState({ click: !this.state.click });
-      isClick = !isClick;
-    }
-    const handleClickClick = () => {
-      this.setState({ click: !this.state.click });
-      this.setState({ click: !this.state.click });
 
+    const handleUpdate = () => {
+      this.setState({ update: !this.state.update });
+      console.log(this.state.update);
     }
+
     return (
       <div className="container">
 
@@ -59,7 +57,6 @@ export default class SearchBarStock extends Component {
             onSelect={(e) => clearState(e)}
             dataSource={this.state.dataSource}
             placeholder="search Ticker"
-            onClick={handleClick}
           />
         </div>
         <div className="row">
@@ -75,8 +72,11 @@ export default class SearchBarStock extends Component {
             {/* <button className="text-dark d-flex justify-content-end" onClick={handleClickClick}>Show Related Posts</button> */}
             <HomePost
               symbol={this.state.symbol}
-            // isClick={isClick}
+              update={this.state.update}
             />
+            {this.props.auth &&
+              <FeedBox handleUpdate={() => handleUpdate()} symbol={this.state.symbol} />
+            }
           </div>
         </div>
       </div>

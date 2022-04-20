@@ -12,5 +12,7 @@
       "main.js"
     ]
   },
-  "publicPath": "/static/dist/"
+  "publicPath": "/static/dist/",
+  "error": "ModuleNotFoundError",
+  "message": "Module not found: Error: Can't resolve '../../LoginPage/axios' in 'C:\\Users\\ipbjs\\desktop\\djangoapps\\2420\\frontend\\src\\components\\homePage\\header'"
 }

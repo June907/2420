@@ -32,10 +32,11 @@ export default function HomePost(props) {
       await fetchdata();
     };
     fetch();
-  }, [props.symbol])
+    console.log(props.update);
+  }, [props.symbol, props.update])
 
   return p.map((obj, i, arr) => {
-    console.log(props.symbol);
+    console.log(props.symbol, props.update);
     return <Post key={i} obj={obj}></Post>
   })
 }
