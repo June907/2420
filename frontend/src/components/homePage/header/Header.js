@@ -2,13 +2,13 @@ import { Link, Outlet } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import CheckAuth from "../../accountPage/CheckAuth"
 import { useNavigate } from "react-router-dom";
-import Cookies from "js-cookie";
 import GlobalAPI from "../../accountPage/GlobalAPI";
+
 function Header() {
 
     const [auth, changeAuth] = useState(false);
-    const navigate=useNavigate();
-    const logout_url='/users/logout';
+    const navigate = useNavigate();
+    const logout_url = '/users/logout';
     const fetchdata = async () => {
         const val = await CheckAuth();
         changeAuth(val);
@@ -18,13 +18,11 @@ function Header() {
     useEffect(() => {
         fetchdata();
     }, []);
-    const handleClick=async e =>{
+    const handleClick = async e => {
         e.preventDefault();
-        const response=await GlobalAPI(true,logout_url,null);
-        const val = await CheckAuth();
-        changeAuth(val);
-        console.log(auth);
+        const response = await GlobalAPI(true, logout_url, null);
         navigate("/login");
+        fetchdata();
     }
 
     return (
@@ -50,7 +48,7 @@ function Header() {
                     </ul> */}
                 </div>
                 <div className="mx-auto order-0">
-                    <Link className="navbar-brand mx-auto" to="/">Stock App</Link>
+                    <Link className="navbar-brand mx-auto" style={{ paddingLeft: 50 }} to="/">The Stock App</Link>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -62,7 +60,7 @@ function Header() {
                         </li>
                         {auth
                             ? <li className="nav-item">
-                                <a class="nav-link"onClick={handleClick} style={{textDecoration:"none"}}>Logout</a>
+                                <a class="nav-link" onClick={handleClick} style={{ textDecoration: "none" }}>Logout</a>
                             </li>
                             : <li className="nav-item">
                                 <Link className="nav-link" to="/account">Signup/Login</Link>

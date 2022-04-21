@@ -35,8 +35,18 @@ export default function HomePost(props) {
     console.log(props.update);
   }, [props.symbol, props.update])
 
-  return p.map((obj, i, arr) => {
-    console.log(props.symbol, props.update);
-    return <Post key={i} obj={obj}></Post>
-  })
+  const mapping = () => {
+    let list = [];
+    if (p.length > 0 && p[0] != "") {
+      p.map((obj, i, arr) => {
+        console.log(props.symbol, props.update);
+        console.log(p[0]);
+        list.push(<Post key={i} obj={obj}></Post>);
+      })
+      return list;
+    }
+    return <h3 className="text">No posts to show for {props.symbol}.</h3>;
+  }
+
+  return mapping();
 }

@@ -1,48 +1,43 @@
 
 import React, { useState } from "react";
-import { useNavigate, useLocation} from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from "./axios";
 import ProtectedRoute from "./ProtectedRoute";
 import { Auth } from "./Auth";
 import "./Login.css"
 import GlobalAPI from "../GlobalAPI";
 
-export default function Login(){
-  const[password,setPassword]=useState("");
-  const[email,setEmail]=useState("");
+export default function Login() {
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
   //const{setAuth}=Auth();
-  const[auth, setAuth]=useState(false);
+  const [auth, setAuth] = useState(false);
   //const location = useLocation();
   //const from = location.state?.from?.pathname || "/";
-  const login_url='/users/token';
-  const navigate=useNavigate();
+  const login_url = '/users/token';
+  const navigate = useNavigate();
   const handleSubmit = async e => {
     e.preventDefault();
-    try{
-      const response= await GlobalAPI(false,login_url,JSON.stringify(({email,password})),
-        {
-          headers: {'Content-Type':'application/json' },
-          withCredentials:true
-
-
-        }
-      );
+    try {
+      const response = await GlobalAPI(false, login_url, JSON.stringify(({ email, password })));
       //setAuth({user:true});
       setEmail("");
       setPassword("");
       setAuth(true);
       //navigate(from, { replace: true });
       console.log(response?.data);
-      localStorage.setItem("isAuth","true");
-      const isAuth=localStorage.getItem("isAuth");
-      console.log(isAuth);
-      //<ProtectedRoute isAuth={auth}/>
-      navigate("/profile");
-  }catch(err){
-    console.log(err);
+      if (response.status != 200) {
+        alert(response.data.message);
+      }
+      else {
+        navigate("/");
+        window.location.reload();
+      }
+    } catch (err) {
+      console.log(err);
+    }
   }
-}
-  return(
+  return (
     <div>
       <h1 className="center">Login</h1>
 
@@ -52,7 +47,7 @@ export default function Login(){
 
         <input
           className="signup-input"
-          onChange={e=>setEmail(e.target.value)}
+          onChange={e => setEmail(e.target.value)}
           type="text"
           name="email"
           value={email}
@@ -61,7 +56,7 @@ export default function Login(){
         />
         <input
           className="signup-input"
-          onChange={e=>setPassword(e.target.value)}
+          onChange={e => setPassword(e.target.value)}
           type="password"
           name="password"
           value={password}
@@ -70,9 +65,9 @@ export default function Login(){
 
 
         />
-        
+
         <button className="Loginbutton">Submit</button>
-        
+
       </form>
 
 

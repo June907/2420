@@ -4,6 +4,7 @@ import { Button, TextField } from "@material-ui/core";
 import "./TweetBox.css";
 import GlobalAPI from "../../accountPage/GlobalAPI";
 import Ticker from "./Ticker";
+import "antd/dist/antd.css";
 
 export default function FeedBox(props) {
   const post_url = '/posts/create';
@@ -25,18 +26,23 @@ export default function FeedBox(props) {
   }
   return (
     <div className="tweetBox">
-      <form>
+      <div className="row">
+        <form>
+          <div className="col-1">
+            <TextField label={"~    Write a post about " + props.symbol} className="text_field" id="fullWidth" style={{ backgroundColor: "white" }}
+              value={content}
+              onChange={(e) => { setContent(e.target.value) }}
 
-        <TextField fullWidth label="What's happening?" id="fullWidth" style={{ backgroundColor: "white" }}
-          value={content}
-          onChange={(e) => { setContent(e.target.value) }}
-          placeholder="What's happening?"
-          type="text"
-        />
-        <Button onClick={handleSubmit} type="submit" className="tweetBox__button">
-          Send
-        </Button>
-      </form>
+              type="text"
+            />
+          </div>
+          <div className="col-2">
+            <Button onClick={handleSubmit} type="submit" className="tweetBox__button">
+              Send
+            </Button>
+          </div>
+        </form>
+      </div>
     </div>
   )
 }

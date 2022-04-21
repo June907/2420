@@ -47,21 +47,16 @@ export default async function GlobalAPI(isGet, url, data) {
                             console.log('ended');
                             return re;
                         }
-                        r = await fetch();
-                        console.log('Ho');
-                        console.log(r);
+                        let temp = await fetch();
+                        if (temp != null) {
+                            r = temp;
+                        }
+                        return r;
                     }
-                } else if (error.request) {
-                    // The request was made but no response was received
-                    // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-                    // http.ClientRequest in node.js
-                    console.log("Path 2");
-                    console.log(error.request);
-                } else {
-                    // Something happened in setting up the request that triggered an Error
-                    console.log('Error', error.message);
+                    else {
+                        r = error.response;
+                    }
                 }
-
             });
         console.log(url);
         console.log('HEY');
@@ -110,9 +105,11 @@ export default async function GlobalAPI(isGet, url, data) {
                             console.log('ended');
                             return re;
                         }
-                        r = await fetch();
-                        console.log('Ho');
-                        console.log(r);
+                        let temp = await fetch();
+                        if (temp != null) {
+                            return temp;
+                        }
+                        return r;
                     }
                 } else if (error.request) {
                     // The request was made but no response was received

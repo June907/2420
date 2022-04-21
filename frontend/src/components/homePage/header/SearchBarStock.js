@@ -6,6 +6,7 @@ import Stock from "./Stock";
 import HomePost from "./HomePost";
 import { Auth } from "../../accountPage/LoginPage/Auth";
 import FeedBox from "./TweeBox";
+import { CenterFocusStrong } from "@material-ui/icons";
 
 export default class SearchBarStock extends Component {
   state = {
@@ -47,8 +48,9 @@ export default class SearchBarStock extends Component {
 
     return (
       <div className="container">
-
         <div style={{ padding: "10%", marginLeft: "5%" }}>
+          <h2 style={{ color: "white", textAlign: "center" }}>Select a Ticker</h2>
+          <br></br>
           <AutoComplete
             style={{ width: "90%" }}
             className="d"
@@ -70,13 +72,15 @@ export default class SearchBarStock extends Component {
           </div>
           <div className="col">
             {/* <button className="text-dark d-flex justify-content-end" onClick={handleClickClick}>Show Related Posts</button> */}
+            {this.props.auth &&
+              <FeedBox handleUpdate={() => handleUpdate()} symbol={this.state.symbol} />
+            }
+            <br></br>
             <HomePost
               symbol={this.state.symbol}
               update={this.state.update}
             />
-            {this.props.auth &&
-              <FeedBox handleUpdate={() => handleUpdate()} symbol={this.state.symbol} />
-            }
+
           </div>
         </div>
       </div>
