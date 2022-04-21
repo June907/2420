@@ -3,7 +3,7 @@ import React from "react";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import About from "./aboutPage/About";
 import HomePage from "./homePage/HomePage";
-
+import Logout from "./accountPage/LoginPage/Logout";
 import Accounts from "./accountPage/Accounts";
 import ProtectedRoute from "./accountPage/LoginPage/ProtectedRoute";
 import LoginPage from "./accountPage/LoginPage/LoginPage";
@@ -26,6 +26,7 @@ function App(){
           <Route path="/about" element={<About/>}/>
           <Route path="/account" element={<Accounts/>}/>
           <Route path="/login" element={<LoginPage/>}/>
+          <Route path="/logout" element={<Logout/>}/>
         </Route>
         {/*private route */}
           <Route element={<ProtectedRoute/>}>

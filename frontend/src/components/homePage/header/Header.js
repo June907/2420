@@ -1,11 +1,14 @@
 import { Link, Outlet } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import CheckAuth from "../../accountPage/CheckAuth"
-
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
+import GlobalAPI from "../../accountPage/GlobalAPI";
 function Header() {
 
     const [auth, changeAuth] = useState(false);
-
+    const navigate=useNavigate();
+    const logout_url='/users/logout';
     const fetchdata = async () => {
         const val = await CheckAuth();
         changeAuth(val);
@@ -15,6 +18,14 @@ function Header() {
     useEffect(() => {
         fetchdata();
     }, []);
+    const handleClick=async e =>{
+        e.preventDefault();
+        const response=await GlobalAPI(true,logout_url,null);
+        const val = await CheckAuth();
+        changeAuth(val);
+        console.log(auth);
+        navigate("/login");
+    }
 
     return (
         <div>
@@ -51,7 +62,7 @@ function Header() {
                         </li>
                         {auth
                             ? <li className="nav-item">
-                                <Link className="nav-link" to="/logout">Logout</Link>
+                                <a class="nav-link"onClick={handleClick} style={{textDecoration:"none"}}>Logout</a>
                             </li>
                             : <li className="nav-item">
                                 <Link className="nav-link" to="/account">Signup/Login</Link>

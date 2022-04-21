@@ -14,8 +14,8 @@ export default function Login(){
   const[auth, setAuth]=useState(false);
   //const location = useLocation();
   //const from = location.state?.from?.pathname || "/";
-  const login_url='/users/token'
-  const navigate=useNavigate()
+  const login_url='/users/token';
+  const navigate=useNavigate();
   const handleSubmit = async e => {
     e.preventDefault();
     try{
