@@ -39,16 +39,7 @@ export default function HomePage() {
 
         <br></br>
         <br></br>
-        <HomePageIntro />
-        <br></br>
-        <br></br>
-        <HomePageFeature />
-        <br></br>
-        <br></br>
-        <HomePageReviewIntro />
-        <br></br>
-        <br></br>
-        <ReviewContent />
+       
 
       </div>
 
