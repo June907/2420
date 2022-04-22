@@ -48,7 +48,7 @@ function Header() {
                     </ul> */}
                 </div>
                 <div className="mx-auto order-0">
-                    <Link className="navbar-brand mx-auto" style={{ paddingLeft: 50 }} to="/">The Stock App</Link>
+                    <Link className="navbar-brand mx-auto"  to="/">The Stock App</Link>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
                         <span className="navbar-toggler-icon"></span>
                     </button>

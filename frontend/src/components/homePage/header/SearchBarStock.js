@@ -49,11 +49,11 @@ export default class SearchBarStock extends Component {
 
     return (
       <div className="container">
-        <div style={{ padding: "10%", marginLeft: "5%" }}>
+        <div style={{ padding: "10%",  textAlign: "center" }}>
           <h2 style={{ color: "white", textAlign: "center" }}>Select a Ticker</h2>
           <br></br>
           <AutoComplete
-            style={{ width: "90%" }}
+            style={{ width: "50%" }}
             className="d"
             value={this.state.search}
             onChange={(e) => handleSearch(e)}
