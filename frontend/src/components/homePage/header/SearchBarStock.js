@@ -13,14 +13,15 @@ export default class SearchBarStock extends Component {
     search: "AAPL: Apple Inc.",
     dataSource: [],
     update: false,
-    symbol: 'AAPL'
+    symbol: 'AAPL',
+    fullName: "AAPL: Apple Inc."
   };
 
   render() {
 
     const clearState = (e) => {
       this.setState({ dataSource: [] });
-      this.setState({ symbol: e.split(":")[0] });
+      this.setState({ symbol: e.split(":")[0], fullName: e });
     };
 
     const getTickerFromAPi = async (e) => {
@@ -65,7 +66,7 @@ export default class SearchBarStock extends Component {
           <div className="col">
 
             <Stock
-              name={this.state.search}
+              name={this.state.fullName}
               symbol={this.state.symbol}
               isClick={this.state.click}
             />

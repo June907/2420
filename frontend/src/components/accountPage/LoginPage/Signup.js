@@ -6,22 +6,24 @@ import axios from "./axios";
 
 
 
-export default function Signup(){
-  const[userName,setUserName]=useState("");
-  const[email,setEmail]=useState("");
-  const[password,setPassword]=useState("");
-  const[fName,setfName]=useState("");
-  const[lName,setlName]=useState("");
-  const[company,setCompany]=useState("");
-  const signup_url='users/register';
+export default function Signup() {
+  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [fName, setfName] = useState("");
+  const [lName, setlName] = useState("");
+  const [company, setCompany] = useState("");
+  const signup_url = 'users/register';
   const handleSubmit = async e => {
     e.preventDefault();
-    try{
-      const response= await GlobalAPI(false,signup_url,JSON.stringify({username: userName, email:email,
-      password:password,first_name:fName,last_name:lName, company:company}),
+    try {
+      const response = await GlobalAPI(false, signup_url, JSON.stringify({
+        username: userName, email: email,
+        password: password, first_name: fName, last_name: lName, company: company
+      }),
         {
-          headers: {'Content-Type':'application/json', },
-          withCredentials:true
+          headers: { 'Content-Type': 'application/json', },
+          withCredentials: true
 
 
         }
@@ -32,7 +34,15 @@ export default function Signup(){
       setfName("");
       setlName("");
       setCompany("");
-    }catch(err){
+      if (response.status != 200) {
+        alert(response.data.message);
+      }
+      else {
+        alert("Signup successful. Please log in.");
+        navigate("/login");
+
+      }
+    } catch (err) {
       console.log(err);
     }
   }
@@ -41,15 +51,15 @@ export default function Signup(){
 
 
 
-  return(
+  return (
     <div>
       <h1 className="center">Sign Up </h1>
 
 
       <form onSubmit={handleSubmit}>
-      <input
+        <input
           className="signup-input"
-          onChange={e=>setUserName(e.target.value)}
+          onChange={e => setUserName(e.target.value)}
           type="text"
           name="userName"
           value={userName}
@@ -62,7 +72,7 @@ export default function Signup(){
 
         <input
           className="signup-input"
-          onChange={e=>setEmail(e.target.value)}
+          onChange={e => setEmail(e.target.value)}
           type="text"
           name="email"
           value={email}
@@ -71,7 +81,7 @@ export default function Signup(){
         />
         <input
           className="signup-input"
-          onChange={e=>setPassword(e.target.value)}
+          onChange={e => setPassword(e.target.value)}
           type="password"
           name="password"
           value={password}
@@ -82,7 +92,7 @@ export default function Signup(){
         />
         <input
           className="signup-input"
-          onChange={e=>setfName(e.target.value)}
+          onChange={e => setfName(e.target.value)}
           type="text"
           name="fistName"
           value={fName}
@@ -91,7 +101,7 @@ export default function Signup(){
         />
         <input
           className="signup-input"
-          onChange={e=>setlName(e.target.value)}
+          onChange={e => setlName(e.target.value)}
           type="text"
           name="lastName"
           value={lName}
@@ -101,7 +111,7 @@ export default function Signup(){
 
         <input
           className="signup-input"
-          onChange={e=>setCompany(e.target.value)}
+          onChange={e => setCompany(e.target.value)}
           type="text"
           name="company"
           value={company}
