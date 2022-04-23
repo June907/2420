@@ -51,9 +51,9 @@ export default function Signup() {
 
 
 
-  return (
-    <div>
-      <h1 className="center">Sign Up </h1>
+  return(
+    <div className="center">
+      <h1 style={{textAlign: "center", padding: 0}}>Sign Up</h1>
 
 
       <form onSubmit={handleSubmit}>

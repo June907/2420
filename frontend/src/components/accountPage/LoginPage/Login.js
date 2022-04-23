@@ -39,7 +39,7 @@ export default function Login() {
   }
   return (
     <div>
-      <h1 className="center">Login</h1>
+      <h1 style={{textAlign: "center", padding: 0}}>Login</h1>
 
 
       <form onSubmit={handleSubmit}>
