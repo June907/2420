@@ -34,9 +34,8 @@ function Blocks() {
         <div className="blocks-text">
             <p className = "text-light">
                 <b><u>Junwen Huang</u>: Frontend Developer</b><br/>
-                Isaac is a third year Business Computer Information Systems major interested in data analytics and large scale backend calculations. He took the lead role in this project 
-                using management skills and large scale ideas to guide the more technical members of the team to create the website we planned and envisioned. Outside of school he participates 
-                in weightlifting and a competitive bowling league. <br/>
+                Junwen is a fourth-year student studying software engineering and applied mathematics, who will be graduating in December 2022. Junwen had the most experience with the react framework, so he took the lead frontend role. He used this knowledge to develop the frontend and integrate it with an external API. Professionally, Junwen is working as an intern at RedVan workshop with his primary role being SFCC development.
+                <br/>
                 <a href = "https://www.linkedin.com/in/junwen-huang-658aaa202/" target="_blank" rel="noreferrer">LinkedIn</a>
             </p> 
         </div>
