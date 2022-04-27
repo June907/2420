@@ -49,7 +49,9 @@ export default function HomePost(props) {
       })
       return list;
     }
-    return <h3 className="text">No posts to show for {props.symbol}.</h3>;
+    return (
+      <h3 className="text">No posts to show for {props.symbol}.</h3>
+    );
   }
 
   return mapping();

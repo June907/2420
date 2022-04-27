@@ -30,7 +30,7 @@ export default function Login() {
         alert(response.data.message);
       }
       else {
-        navigate("/");
+        navigate("/aapl");
         window.location.reload();
       }
     } catch (err) {

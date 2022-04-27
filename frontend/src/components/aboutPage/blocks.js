@@ -8,7 +8,7 @@ function Blocks() {
         <p className = "text-light" >
         This website was created by the team named '2 for 20' as their senior project at the University of Northern Colorado. The team is made of five students from both the Business Admin: Computer Information Systems and the Software Engineering majors. 
         The Stock App is the culmination of one whole school year dedicated to learning how to develop a project from start to finish. The goal of this webisite was to fill the social media void for stock trading. 
-        Through the expressed need for a dedicated sight seen through the many reddit threds and facebook groups, The Stock App was born. 
+        Through the expressed need for a dedicated site seen through the many reddit threads and facebook groups, The Stock App was born. 
         </p>
     </div>
     <br></br>

@@ -17,7 +17,7 @@ export default function Post(props) {
 
   const get_id = (user) => {
     console.log(props.obj);
-    if (user === undefined) {
+    if (user === undefined || user === null) {
       console.log("undefined 0");
       return 0;
     }

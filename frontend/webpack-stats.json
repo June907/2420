@@ -3,7 +3,7 @@
   "assets": {
     "main.js": {
       "name": "main.js",
-      "path": "C:\\Users\\ipbjs\\Desktop\\djangoapps\\2420\\frontend\\static\\dist\\main.js",
+      "path": "C:\\Users\\ipbjs\\Desktop\\pythonapps\\twofortwenty\\frontend\\static\\dist\\main.js",
       "publicPath": "/static/dist/main.js"
     }
   },
@@ -12,7 +12,5 @@
       "main.js"
     ]
   },
-  "publicPath": "/static/dist/",
-  "error": "ModuleBuildError",
-  "message": "Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: C:\\Users\\ipbjs\\Desktop\\djangoapps\\2420\\frontend\\src\\components\\homePage\\header\\SearchBarStock.js: Unexpected reserved word 'await'. (41:4)\n\n  39 |\n  40 |   componentDidMount() {\n> 41 |     await timeout(3000);\n     |     ^\n  42 |     console.log(\"HEY\");\n  43 |     this.setState({ show: true });\n  44 |\n    at Object._raise (C:\\Users\\ipbjs\\Desktop\\djangoapps\\2420\\frontend\\node_modules\\@babel\\parser\\lib\\index.js:569:17)\n    at Object.raiseWithData (C:\\Users\\ipbjs\\Desktop\\djangoapps\\2420\\frontend\\node_modules\\@babel\\parser\\lib\\index.js:562:17)\n    at Object.raise (C:\\Users\\ipbjs\\Desktop\\djangoapps\\2420\\frontend\\node_modules\\@babel\\parser\\lib\\index.js:523:17)\n    at Object.checkReservedWord (C:\\Users\\ipbjs\\Desktop\\djangoapps\\2420\\frontend\\node_modules\\@babel\\parser\\lib\\index.js:13051:12)\n    at Object.parseIdentifierName (C:\\Users\\ipbjs\\Desktop\\djangoapps\\2420\\frontend\\node_modules\\@babel\\parser\\lib\\index.js:13005:12)\n    at Object.parseIdentifier (C:\\Users\\ipbjs\\Desktop\\djangoapps\\2420\\frontend\\node_modules\\@babel\\parser\\lib\\index.js:12975:23)\n    at Object.parseExprAtom (C:\\Users\\ipbjs\\Desktop\\djangoapps\\2420\\frontend\\node_modules\\@babel\\parser\\lib\\index.js:12074:27)\n    at Object.parseExprAtom (C:\\Users\\ipbjs\\Desktop\\djangoapps\\2420\\frontend\\node_modules\\@babel\\parser\\lib\\index.js:7523:20)\n    at Object.parseExprSubscripts (C:\\Users\\ipbjs\\Desktop\\djangoapps\\2420\\frontend\\node_modules\\@babel\\parser\\lib\\index.js:11658:23)\n    at Object.parseUpdate (C:\\Users\\ipbjs\\Desktop\\djangoapps\\2420\\frontend\\node_modules\\@babel\\parser\\lib\\index.js:11638:21)"
+  "publicPath": "/static/dist/"
 }
