@@ -11,3 +11,9 @@ class Post(models.Model):
     posted = models.BooleanField(null=False, default=False)
     deleted = models.BooleanField(null=False, default=False)
     posted_at = models.DateTimeField(null=True)
+
+
+class Like(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    liked_at = models.DateTimeField(null=True)

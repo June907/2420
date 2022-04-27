@@ -1,15 +1,23 @@
 from rest_framework import serializers
-from .models import Post
+from .models import Like, Post
 from users.models import User
+
+
+class LikeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Like
+        fields = ('user',)
 
 
 class PostSerializer(serializers.ModelSerializer):
     user = serializers.SerializerMethodField()
     posted_at = serializers.SerializerMethodField()
+    likes = serializers.SerializerMethodField()
 
     class Meta:
         model = Post
-        fields = ('user', 'title', 'content', 'tags', 'posted_at')
+        fields = ('id', 'user', 'title', 'content',
+                  'tags', 'posted_at', 'likes')
 
     def get_tags(self, obj):
         tags = []
@@ -45,3 +53,10 @@ class PostSerializer(serializers.ModelSerializer):
             m = "0" + str(p.minute)
 
         return str(p.month) + '/' + str(p.day) + '/' + str(p.year) + ' @ ' + h + ":" + m + half
+
+    def get_likes(self, obj):
+        likes = Like.objects.filter(post=obj.id)
+        arr = []
+        for l in likes:
+            arr.append(LikeSerializer(l).data)
+        return arr

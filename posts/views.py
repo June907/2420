@@ -4,9 +4,9 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework import generics, status
-from .models import Post
+from .models import Post, Like
 from users.models import User
-from .serializers import PostSerializer
+from .serializers import PostSerializer, LikeSerializer
 from datetime import datetime
 
 post_limit = 10
@@ -114,7 +114,7 @@ class ShowPostsByTag(APIView):
                         break
             return Response({'message': "Posts generated successfully.", 'posts': r}, status=status.HTTP_200_OK)
         except KeyError:
-            return Response({'message': "Improperly configured request. Please include a 'ticker' value in the body."}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'message': "Improperly configured request. Please include a 'tags' value in the body."}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class ShowAllPosts(APIView):
@@ -138,3 +138,27 @@ class ShowAllPosts(APIView):
         if len(r) > 0:
             return Response({'message': "Posts generated successfully.", 'posts': r}, status=status.HTTP_200_OK)
         return Response({'message': "No posts found."}, status=status.HTTP_200_OK)
+
+
+class SendLike(APIView):
+    permission_class = [IsAuthenticated]
+
+    def post(self, request, format=None):
+        try:
+            post_id = request.data['post']
+            post = Post.objects.get(id=post_id)
+
+            if post is not None:
+                like = Like.objects.filter(post=post.id, user=request.user.id)
+                if len(like) == 0:
+                    like = Like(user=request.user, post=post,
+                                liked_at=datetime.now())
+                    like.save()
+
+                    return Response({'message': "Post liked."}, status=status.HTTP_201_CREATED)
+                else:
+                    like[0].delete()
+                    return Response({'message': "Post unliked."}, status=status.HTTP_200_OK)
+            return Response({'message': "No post found with the provided id."}, status=status.HTTP_400_BAD_REQUEST)
+        except:
+            return Response({'message': "Improperly configured request. Please include a 'post' value in the body."}, status=status.HTTP_400_BAD_REQUEST)
