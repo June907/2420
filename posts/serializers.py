@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Like, Post
 from users.models import User
+from users.serializers import UserSerializer
 
 
 class LikeSerializer(serializers.ModelSerializer):
@@ -30,7 +31,7 @@ class PostSerializer(serializers.ModelSerializer):
         return tags
 
     def get_user(self, obj):
-        return obj.user.username
+        return UserSerializer(obj.user).data
 
     def get_posted_at(self, obj):
         p = obj.posted_at

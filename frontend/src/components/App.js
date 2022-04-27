@@ -1,6 +1,6 @@
 import React from "react";
 
-import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import About from "./aboutPage/About";
 import HomePage from "./homePage/HomePage";
 import Logout from "./accountPage/LoginPage/Logout";
@@ -12,48 +12,49 @@ import ProfileHome from "./accountPage/ProfileHome"
 import Explore from "./accountPage/PostPage/Explore"
 
 require(".././styles.scss");
-function App(){
-  return(
+function App() {
+  return (
     <div>
 
 
-    <Router>
-      <Routes>
+      <Router>
+        <Routes>
 
-        <Route path="/" element={<Fixedbanner/>}>
-        {/*public route */}
-          <Route path="/" element={<HomePage/>}/>
-          <Route path="/about" element={<About/>}/>
-          <Route path="/account" element={<Accounts/>}/>
-          <Route path="/login" element={<LoginPage/>}/>
-          <Route path="/logout" element={<Logout/>}/>
-        </Route>
-        {/*private route */}
-          <Route element={<ProtectedRoute/>}>
-            <Route path="/profile" element={<ProfileHome/>}/>
-            <Route path="/Explore" element={<Explore/>}/>
-          
+          <Route path="/" element={<Fixedbanner />}>
+            {/*public route */}
+            <Route path="/:ticker" element={<HomePage />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/account" element={<Accounts />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/logout" element={<Logout />} />
+            <Route path="/profile/:username" element={<ProfileHome />} />
+          </Route>
+          {/*private route */}
+          <Route element={<ProtectedRoute />}>
 
-        </Route>
-      
-      </Routes>
-      
-      
-    </Router>
+            <Route path="/Explore" element={<Explore />} />
 
 
-  
-  
-  
-    
+          </Route>
+
+        </Routes>
 
 
-    
-  
-  
-  </div>)
-    
-  
+      </Router>
+
+
+
+
+
+
+
+
+
+
+
+    </div>)
+
+
 
 }
 

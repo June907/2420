@@ -14,7 +14,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from .views import CreateView, DeleteView, UpdateView, ShowPostsByTag, ShowAllPosts, SendLike
+from .views import CreateView, DeleteView, UpdateView, ShowPostsByTag, ShowAllPosts, SendLike, ShowPostsByUser
 
 
 urlpatterns = [
@@ -23,6 +23,7 @@ urlpatterns = [
     path('update', UpdateView.as_view(), name='update-post'),
     path('show-all', ShowAllPosts.as_view(), name='show-all'),
     path('show', ShowPostsByTag.as_view(), name='show-ticker'),
+    path('show-user', ShowPostsByUser.as_view(), name='show-user'),
     path('like', SendLike.as_view(), name='like-post'),
 
 ]

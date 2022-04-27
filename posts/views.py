@@ -117,6 +117,33 @@ class ShowPostsByTag(APIView):
             return Response({'message': "Improperly configured request. Please include a 'tags' value in the body."}, status=status.HTTP_400_BAD_REQUEST)
 
 
+class ShowPostsByUser(APIView):
+    permission_classes = [AllowAny]
+
+    def post(self, request, format=None):
+        # take in ticker(s) and return most recent associated posts
+        # try:
+        post_limit = 100
+        user = request.data['user']
+        if type(user) != int:
+            u = User.objects.filter(username=user)
+            if len(u) > 0:
+                user = u[0].id
+
+        posts = Post.objects.filter(
+            user=user, posted=True, deleted=False)
+        if len(posts) > post_limit:
+            posts = posts[len(posts)-post_limit:]
+        posts = list(reversed(posts))
+        r = []
+        if len(posts) > 0:
+            for p in posts:
+                r.append(PostSerializer(p).data)
+        return Response({'message': "Posts generated successfully.", 'posts': r}, status=status.HTTP_200_OK)
+        # except KeyError:
+        #     return Response({'message': "Improperly configured request. Please include a 'user' value in the body."}, status=status.HTTP_400_BAD_REQUEST)
+
+
 class ShowAllPosts(APIView):
     permission_classes = [AllowAny]
 

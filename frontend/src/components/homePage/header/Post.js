@@ -9,9 +9,14 @@ import {
 
 import "./Post.css";
 import GlobalAPI from "../../accountPage/GlobalAPI";
+import { useNavigate, useLocation } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 export default function Post(props) {
 
+  const navigate = useNavigate();
+
   const get_id = (user) => {
+    console.log(props.obj);
     if (user === undefined) {
       console.log("undefined 0");
       return 0;
@@ -21,10 +26,15 @@ export default function Post(props) {
   }
 
   const handleLike = async () => {
-    const response = await GlobalAPI(false, '/posts/like', { post: props.obj.id });
-    console.log(response.data);
-    props.changePost(response.data.post, props.id);
-    console.log(props.obj);
+    if (props.user !== undefined) {
+      const response = await GlobalAPI(false, '/posts/like', { post: props.obj.id });
+      console.log(response.data);
+      props.changePost(response.data.post, props.id);
+      console.log(props.obj);
+    }
+    else {
+      navigate("/login");
+    }
   }
 
   return (
@@ -35,13 +45,13 @@ export default function Post(props) {
             <div className="post__headerText">
               <h3 className="text-light">
                 <span className="post__headerSpecial" style={{ color: 'white' }}>
-                  {props.obj.user}
+                  <Link style={{ color: 'white' }} to={"/profile/" + props.obj.user.username}>{props.obj.user.username}</Link>
                 </span>
                 <span className="post__headerSpecial">
                   &nbsp;{props.obj.posted_at}
                 </span>
-                <span className="post__headerSpecial" style={{ color: 'rgb(0,128,0)' }}>
-                  &nbsp;{props.obj.tags}
+                <span className="post__headerSpecial" >
+                  &nbsp;<Link style={{ color: 'rgb(0,128,0)' }} to={"/" + props.obj.tags[0]}>{props.obj.tags}</Link>
                 </span>
 
               </h3>

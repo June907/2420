@@ -8,14 +8,50 @@ import { Auth } from "../../accountPage/LoginPage/Auth";
 import FeedBox from "./TweeBox";
 import { CenterFocusStrong } from "@material-ui/icons";
 
+const getTickerFromAPi = async (e) => {
+  console.log(e);
+  const response = await axios.get(
+    `https://ticker-2e1ica8b9.now.sh/keyword/${e}`
+  );
+  const ArraysofData = response.data.map((f) => [f.symbol + ": " + f.name]);
+  const FlatArray = [].concat(...ArraysofData);
+  console.log(FlatArray);
+
+  for (const f in FlatArray) {
+    let sub = FlatArray[f].substring(0, 4);
+    if (sub.includes(e)) {
+      return FlatArray[f];
+    }
+  }
+  alert(e + ' is not a registered ticker on The Stock App.');
+  return '';
+};
+
+function timeout(delay) {
+  return new Promise(res => setTimeout(res, delay));
+}
+
 export default class SearchBarStock extends Component {
+
   state = {
-    search: "AAPL: Apple Inc.",
+    search: getTickerFromAPi(this.props.ticker.toUpperCase()),
     dataSource: [],
     update: false,
-    symbol: 'AAPL',
-    fullName: "AAPL: Apple Inc."
+    symbol: this.props.ticker.toUpperCase(),
+    fullName: getTickerFromAPi(this.props.ticker.toUpperCase()),
+    show: false,
   };
+
+  async componentDidMount() {
+    await timeout(500);
+    console.log("HEY");
+    this.state.fullName.then(str => {
+      this.setState({ fullName: str, search: str });
+    }
+    );
+    this.setState({ show: true });
+
+  }
 
   render() {
 
@@ -32,6 +68,9 @@ export default class SearchBarStock extends Component {
       const FlatArray = [].concat(...ArraysofData);
 
       this.setState({ dataSource: FlatArray });
+      if (FlatArray.length > 0) {
+        return (FlatArray[0]);
+      }
     };
 
     const handleSearch = (e) => {
