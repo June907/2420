@@ -8,8 +8,12 @@ export default function HomePost(props) {
 
   const [tags, setTags] = useState([props.symbol]);
   const [p, setP] = useState([]);
+  const [update, setUpdate] = useState(false);
 
-
+  const changePost = (post, i) => {
+    p[i] = post;
+    setUpdate(!update);
+  }
 
   const fetchdata = async () => {
     // setTags([props.symbol]);
@@ -41,7 +45,7 @@ export default function HomePost(props) {
       p.map((obj, i, arr) => {
         console.log(props.symbol, props.update);
         console.log(p[0]);
-        list.push(<Post key={i} obj={obj}></Post>);
+        list.push(<Post update={update} key={i} obj={obj} user={props.user} changePost={changePost} id={i}></Post>);
       })
       return list;
     }

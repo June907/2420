@@ -14,11 +14,15 @@ import CheckAuth from "../accountPage/CheckAuth"
 export default function HomePage() {
 
   const [auth, changeAuth] = useState(false);
+  const [user, changeUser] = useState(null);
+
 
   const fetchdata = async () => {
-    const val = await CheckAuth();
-
+    const [val, user] = await CheckAuth();
+    console.log(user);
+    console.log(val);
     changeAuth(val);
+    changeUser(user);
   }
 
   useEffect(() => {
@@ -32,14 +36,14 @@ export default function HomePage() {
     <div>
       <div className="container text-light">
         <div className="d-flex">
-          <SearchBarStock auth={auth} />
+          <SearchBarStock user={user} auth={auth} />
         </div>
 
 
 
         <br></br>
         <br></br>
-       
+
 
       </div>
 

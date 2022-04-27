@@ -58,5 +58,5 @@ class PostSerializer(serializers.ModelSerializer):
         likes = Like.objects.filter(post=obj.id)
         arr = []
         for l in likes:
-            arr.append(LikeSerializer(l).data)
+            arr.append(l.user.id)
         return arr

@@ -155,10 +155,10 @@ class SendLike(APIView):
                                 liked_at=datetime.now())
                     like.save()
 
-                    return Response({'message': "Post liked."}, status=status.HTTP_201_CREATED)
+                    return Response({'message': "Post liked.", 'post': PostSerializer(post).data}, status=status.HTTP_201_CREATED)
                 else:
                     like[0].delete()
-                    return Response({'message': "Post unliked."}, status=status.HTTP_200_OK)
+                    return Response({'message': "Post unliked.", 'post': PostSerializer(post).data}, status=status.HTTP_200_OK)
             return Response({'message': "No post found with the provided id."}, status=status.HTTP_400_BAD_REQUEST)
         except:
             return Response({'message': "Improperly configured request. Please include a 'post' value in the body."}, status=status.HTTP_400_BAD_REQUEST)

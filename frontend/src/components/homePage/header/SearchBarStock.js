@@ -49,7 +49,7 @@ export default class SearchBarStock extends Component {
 
     return (
       <div className="container">
-        <div style={{ padding: "10%",  textAlign: "center" }}>
+        <div style={{ padding: "10%", textAlign: "center" }}>
           <h2 style={{ color: "white", textAlign: "center" }}>Select a Ticker</h2>
           <br></br>
           <AutoComplete
@@ -78,6 +78,7 @@ export default class SearchBarStock extends Component {
             }
             <br></br>
             <HomePost
+              user={this.props.user}
               symbol={this.state.symbol}
               update={this.state.update}
             />

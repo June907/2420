@@ -10,7 +10,7 @@ function Header() {
     const navigate = useNavigate();
     const logout_url = '/users/logout';
     const fetchdata = async () => {
-        const val = await CheckAuth();
+        const [val, user] = await CheckAuth();
         changeAuth(val);
         console.log(auth);
     }
@@ -48,7 +48,7 @@ function Header() {
                     </ul> */}
                 </div>
                 <div className="mx-auto order-0">
-                    <Link className="navbar-brand mx-auto"  to="/">The Stock App</Link>
+                    <Link className="navbar-brand mx-auto" to="/">The Stock App</Link>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -60,16 +60,12 @@ function Header() {
                         </li>
                         {auth
                             ? <li className="nav-item">
-                                <a class="nav-link" onClick={handleClick} style={{ textDecoration: "none" }}>Logout</a>
+                                <a className="nav-link" onClick={handleClick} style={{ textDecoration: "none" }}>Logout</a>
                             </li>
                             : <li className="nav-item">
                                 <Link className="nav-link" to="/account">Signup/Login</Link>
                             </li>
                         }
-
-
-
-
                     </ul>
                 </div>
             </nav>

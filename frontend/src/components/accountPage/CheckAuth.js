@@ -9,5 +9,5 @@ export default async function CheckAuth() {
     const res = await GlobalAPI(true, url, null);
     console.log("Checking...");
     console.log(res);
-    return res.data.authenticated;
+    return [res.data.authenticated, res.data.user];
 }
