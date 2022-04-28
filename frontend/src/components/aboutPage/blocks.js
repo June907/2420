@@ -2,8 +2,10 @@ import React from "react";
 import './aboutpage.css';
 
 function Blocks() {
-    return <div>
-        
+    return (
+    <div>
+                
+
     <div className="block">
         <p className = "text-light" >
         This website was created by the team named '2 for 20' as their senior project at the University of Northern Colorado. The team is made of five students from both the Business Admin: Computer Information Systems and the Software Engineering majors. 
@@ -85,6 +87,6 @@ function Blocks() {
         </div>
     </div>
 </div>
-
+    );
 }
 export default Blocks;

@@ -8,6 +8,8 @@ from .models import Post, Like
 from users.models import User
 from .serializers import PostSerializer, LikeSerializer
 from datetime import datetime
+import os
+from twofortwenty.settings import BASE_DIR
 
 post_limit = 10
 
@@ -22,6 +24,19 @@ class CreateView(APIView):
                 for i in range(len(tags)):
                     if tags[i] is not None:
                         tags[i] = tags[i].upper()
+                content = request.data['content']
+                content = content.split(" ")
+
+                lines = []
+
+                with open(os.path.join(BASE_DIR, 'users', 'banned_words.txt')) as f:
+                    lines = f.readlines()
+
+                for c in content:
+                    
+                    if c.lower() + "\n" in lines:
+                        return Response({'message': "Please don't use inappropriate words in your post."}, status=status.HTTP_400_BAD_REQUEST)
+
                 post = Post(user=request.user,
                             title=request.data['title'], content=request.data['content'], tags=tags)
                 if request.data.get('has_posted') == True:

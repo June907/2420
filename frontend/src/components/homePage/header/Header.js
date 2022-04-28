@@ -58,6 +58,9 @@ function Header() {
                         <li className="nav-item">
                             <Link className="nav-link" to="/about">About</Link>
                         </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/analytics">Analytics</Link>
+                        </li>
                         {auth
                             ? <li className="nav-item">
                                 <a className="nav-link" onClick={handleClick} style={{ textDecoration: "none" }}>Logout</a>

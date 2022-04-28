@@ -17,6 +17,10 @@ export default function FeedBox(props) {
       var t = [props.symbol];
       const response = await GlobalAPI(false, post_url, JSON.stringify({ title: title, content: content, tags: t, has_posted: true }));
       props.handleUpdate();
+      setContent("");
+      if (response.status != 200) {
+        alert(response.data.message);
+      }
     } catch (err) {
       console.log(err);
     }
